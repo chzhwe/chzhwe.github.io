@@ -34,6 +34,18 @@ _________                   .__  __    .__
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#FFFFFF" />
+	
+	<!--标签页文字切换-->
+	<script type="text/javascript">    
+	    window.onblur=function(){        
+	        document.title="去哪了？快回来！";    
+	        };    
+	        window.onfocus=function () {        
+	        document.title="Czwiki导航网";   
+	        }
+	        </script>
+
+	
 	<!--网页设置-->
     <style>
       p {
@@ -298,6 +310,75 @@ il a:hover:not(.active) {
 	
 
 
+
+
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* 在高度小于 450px 的较小屏幕上，更改 sidenav 的样式（更少的填充和更小的字体大小）*/
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+
+
+
+
 	
   </head>
 <!--身体-->
@@ -306,11 +387,21 @@ il a:hover:not(.active) {
     window.oncontextmenu = function () { return false; }
 </script>
 	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 <!--导航栏-->
 <ul>
 	
   <il><b><a class="active" style="color: #ffffff" href="index.html">Czwiki</a></b></il>
-  <il><a href="index.html" onclick='return confirm("你没有看错！！！这就是陈哲威写了几个月的网站,你问我网站有什么用,我也不知道。");'>关于</font></a>  </il>
+  <il><a href="index.html" onclick='return confirm("你没有看错！！！这就是陈哲威写的网站,你问我网站有什么用,我也不知道。");'>关于</font></a>  </il>
   <il><a href="./W/WXSK/WXSK.html">赞助</a></il>
   <il><a href="./W/TGFW/TGFW.html">网站服务</a></il>
 
@@ -323,7 +414,8 @@ il a:hover:not(.active) {
 		
 
 		<!--滚动条-->
-		<marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #000000;">
+		<marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #959595;">
+			网站
 		</marquee>
 		  
 		  
@@ -356,8 +448,8 @@ il a:hover:not(.active) {
 
 
 
-
     </div>
+	
 <!--字体规格-->
     <article
       style="
@@ -381,6 +473,7 @@ il a:hover:not(.active) {
 
 <!--天气预报-->
 <iframe scrolling="no" src="https://tianqiapi.com/api.php?style=tm&skin=baidu" align="center" frameborder="0" width="270" height="24" allowtransparency="true"></iframe>
+
 <!--搜索栏-->	
     <div class="browser-container">
         <input type="text" class="search-bar" id="searchBar" placeholder="输入想要搜索的内容">
@@ -418,19 +511,34 @@ il a:hover:not(.active) {
 		
 
       <p>嗨~欢迎来到<b>陈哲威</b>的个人网站!</p>
-	  <p>网站<b>资金现非常充足</b>!!!</p>
-	  <details>
-	          <summary><b>（点击展开查看网址情况）</b></summary>
-	          <ol>
-      <p>网站<b>永久地址：</b></p>
-      <p><a href="https://chzhwe.github.io/">https://chzhwe.github.io/</a></p>
-      <p>之后<b>可能会更改为：</b></p>
-      <p><a href="https://czwiki.github.io/">https://czwiki.github.io/</a></p>
-	          </ol>
-	      </details>
 	  
 
+	  
+	  <!--获取IP-->
+	  <p>您的IP地址是: <span id="ip"></span></p>
+	  	<script>
+	  		// 使用免费的ipify API获取访客的IP地址
+	  		fetch('https://api.ipify.org/?format=json')
+	  			.then(response => response.json())
+	  			.then(data => {
+	  				document.getElementById('ip').textContent = data.ip;
+	  			})
+	  			.catch(error => console.error(error));
+	  	</script>
+		
+		<details>
+		        <summary><b>（点击展开查看网址情况）</b></summary>
+		        <ol>
+		<p>网站<b>永久地址：</b></p>
+		<p><a href="https://chzhwe.github.io/">https://chzhwe.github.io/</a></p>
+		<p>网站<b>主要地址：</b></p>
+		<p><a href="https://czwiki.github.io/">https://czwiki.github.io/</a></p>
+		        </ol>
+		    </details>
+		
       <p>该项目未被允许请勿直接用于商业等用途，本项目<b>仅供娱乐</b>。</p>
+	  
+
 	  
       <hr />
 	  <p>网站目前已在<b><a style="color: #000000;"
@@ -545,14 +653,15 @@ il a:hover:not(.active) {
 
 
 
-
       
 
 
       
 
       <hr />
-<video src="https://upos-sz-mirror08c.bilivideo.com/upgcxcode/28/14/504181428/504181428_nb2-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&amp;uipk=5&amp;nbs=1&amp;deadline=1698479811&amp;gen=playurlv2&amp;os=08cbv&amp;oi=0&amp;trid=98bc8eddb6bb4c968af5710231b594f9h&amp;mid=1831160594&amp;platform=html5&amp;upsig=0fb2ce52ba7c24a03fefe471a000608e&amp;uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&amp;bvc=vod&amp;nettype=0&amp;f=h_0_0&amp;bw=48324&amp;logo=80000000" controls="controls" width="300px" height="250px" draggable="true"></video>
+	  <!--视频
+<video src="" controls="controls" width="300px" height="250px" draggable="true"></video>
+	  -->
 
 
 
@@ -740,6 +849,7 @@ function() {
         ></h2>
 		<p>未经允许请勿用于商业用途,本项目仅供娱乐!</p>
 		<h3><b>©2023 Czwiki   无公安网备案</b></h3>
+		
 	  <!-- 访问数量 -->
 <script language=JavaScript>
     <!--
@@ -793,11 +903,12 @@ document.write("你已访问网站" + visits + "次")
 // -->
 </script>
 
+<!--运行时间-->
 <span id="span"></span>
 <script type="text/javascript">
     function runtime(){
         // 初始时间，日/月/年 时:分:秒
-        X = new Date("10/28/2023 15:00:00");
+        X = new Date("2/1/2023 00:00:00");
         Y = new Date();
         T = (Y.getTime()-X.getTime());
         M = 24*60*60*1000;
@@ -809,10 +920,15 @@ document.write("你已访问网站" + visits + "次")
         C = Math.floor((b-B)*60);
         D = Math.floor((c-C)*60);
         //信息写入到DIV中
-        span.innerHTML = "本站距离上次更新已过去: "+A+"天"+B+"小时"+C+"分"+D+"秒"
+        span.innerHTML = "本站已稳定运行: "+A+"天"+B+"小时"+C+"分"+D+"秒"
     }
     setInterval(runtime, 1000);
 </script>
+
+
+
+
+
 
 <p>        <a 
           style="color: #f1f1f1;float:right"
@@ -820,6 +936,11 @@ document.write("你已访问网站" + visits + "次")
           >Easter egg</a
         ></p>
 <h3 align="center"></h3>
+
+
+
+
+
 
 </body>
 
