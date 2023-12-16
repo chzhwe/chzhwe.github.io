@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>绿色树枝网</title>
+    <meta
+      name="description"
+      content="极乐网"
+    />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <style>
+      p {
+        margin-bottom: 16px;
+        overflow-wrap: break-word;
+		background: linear-gradient(to right, red, green);
+		-webkit-background-clip: text;
+		color: transparent;
+      }
+
+      a {
+        color: #00aa00;
+        text-decoration: none;
+        border-bottom: 1px dashed;
+		
+      }
+
+      hr {
+        margin: 30px auto;
+      }
+
+H1 {
+		      background: linear-gradient(to right, red, green);
+		      -webkit-background-clip: text;
+		      color: transparent;
+		  }
+		  H2 {
+		      background: linear-gradient(to right, red, green);
+		      -webkit-background-clip: text;
+		      color: transparent;
+		  }
+		  H3 {
+		      background: linear-gradient(to right, red, green);
+		      -webkit-background-clip: text;
+		      color: transparent;
+		  }
+
+
+    </style>
+    <style id="mp">
+      .mp {
+        display: none;
+      }
+	  
+
+    </style>
+	
+	
+	
+	<style type="text/css">
+		form{
+	        text-align: left;
+	    }
+
+	</style>
+	
+	
+<SCRIPT language=JavaScript> 
+ 
+function password() { 
+ 
+var testV = 1; 
+ 
+var pass1 = prompt('请输入访问密码:',''); 
+ 
+while (testV < 3) { 
+ 
+if (!pass1) 
+ 
+history.go(-1); 
+ 
+if (pass1 == "JLW") { 
+ 
+alert('欢迎进入绿色树枝网!'); 
+ 
+break; 
+ 
+} 
+ 
+testV+=-1; 
+ 
+var pass1 = prompt('密码错误!请重新输入:'); 
+ 
+} 
+ 
+if (pass1!="password" & testV ==3) 
+ 
+history.go(-1); 
+ 
+return " "; 
+ 
+} 
+ 
+document.write(password()); 
+ 
+</SCRIPT>
+	
+  </head>
+
+  <body style="margin: 0">
+
+
+<script>//禁用右键（防止右键查看源代码） 
+    window.oncontextmenu = function () { return false; }
+	
+
+</script>
+	  
+	  
+
+<script>
+function clickEffect() {
+  let balls = [];
+  let longPressed = false;
+  let longPress;
+  let multiplier = 0;
+  let width, height;
+  let origin;
+  let normal;
+  let ctx;
+  const colours = ["#55aa7f", "#00ff00", "#aaff00", "#aaff7f", "#55ff00"];
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
+  const pointer = document.createElement("span");
+  pointer.classList.add("pointer");
+  document.body.appendChild(pointer);
+ 
+  if (canvas.getContext && window.addEventListener) {
+    ctx = canvas.getContext("2d");
+    updateSize();
+    window.addEventListener('resize', updateSize, false);
+    loop();
+    window.addEventListener("mousedown", function(e) {
+      pushBalls(randBetween(10, 20), e.clientX, e.clientY);
+      document.body.classList.add("is-pressed");
+      longPress = setTimeout(function(){
+        document.body.classList.add("is-longpress");
+        longPressed = true;
+      }, 500);
+    }, false);
+    window.addEventListener("mouseup", function(e) {
+      clearInterval(longPress);
+      if (longPressed == true) {
+        document.body.classList.remove("is-longpress");
+        pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
+        longPressed = false;
+      }
+      document.body.classList.remove("is-pressed");
+    }, false);
+    window.addEventListener("mousemove", function(e) {
+      let x = e.clientX;
+      let y = e.clientY;
+      pointer.style.top = y + "px";
+      pointer.style.left = x + "px";
+    }, false);
+  } else {
+    console.log("canvas or addEventListener is unsupported!");
+  }
+ 
+ 
+  function updateSize() {
+    canvas.width = window.innerWidth * 2;
+    canvas.height = window.innerHeight * 2;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.scale(2, 2);
+    width = (canvas.width = window.innerWidth);
+    height = (canvas.height = window.innerHeight);
+    origin = {
+      x: width / 2,
+      y: height / 2
+    };
+    normal = {
+      x: width / 2,
+      y: height / 2
+    };
+  }
+  class Ball {
+    constructor(x = origin.x, y = origin.y) {
+      this.x = x;
+      this.y = y;
+      this.angle = Math.PI * 2 * Math.random();
+      if (longPressed == true) {
+        this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
+      } else {
+        this.multiplier = randBetween(6, 12);
+      }
+      this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
+      this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
+      this.r = randBetween(8, 12) + 3 * Math.random();
+      this.color = colours[Math.floor(Math.random() * colours.length)];
+    }
+    update() {
+      this.x += this.vx - normal.x;
+      this.y += this.vy - normal.y;
+      normal.x = -2 / window.innerWidth * Math.sin(this.angle);
+      normal.y = -2 / window.innerHeight * Math.cos(this.angle);
+      this.r -= 0.3;
+      this.vx *= 0.9;
+      this.vy *= 0.9;
+    }
+  }
+ 
+  function pushBalls(count = 1, x = origin.x, y = origin.y) {
+    for (let i = 0; i < count; i++) {
+      balls.push(new Ball(x, y));
+    }
+  }
+ 
+  function randBetween(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
+ 
+  function loop() {
+    ctx.fillStyle = "rgba(255, 255, 255, 0)";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < balls.length; i++) {
+      let b = balls[i];
+      if (b.r < 0) continue;
+      ctx.fillStyle = b.color;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
+      ctx.fill();
+      b.update();
+    }
+    if (longPressed == true) {
+      multiplier += 0.2;
+    } else if (!longPressed && multiplier >= 0) {
+      multiplier -= 0.4;
+    }
+    removeBall();
+    requestAnimationFrame(loop);
+  }
+ 
+  function removeBall() {
+    for (let i = 0; i < balls.length; i++) {
+      let b = balls[i];
+      if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
+        balls.splice(i, 1);
+      }
+    }
+  }
+}
+clickEffect();//调用特效函数
+
+
+
+</script>
+
+
+    <span class="js-cursor-container"></span>
+    <script>
+        (function fairyDustCursor() {
+ 
+            var possibleColors = ["#55aa7f", "#55ff7f", "#55aa00"]
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var cursor = { x: width / 2, y: width / 2 };
+            var particles = [];
+ 
+            function init() {
+                bindEvents();
+                loop();
+            }
+ 
+           
+            function bindEvents() {
+                document.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('resize', onWindowResize);
+            }
+ 
+            function onWindowResize(e) {
+                width = window.innerWidth;
+                height = window.innerHeight;
+            }
+ 
+            function onMouseMove(e) {
+                cursor.x = e.clientX;
+                cursor.y = e.clientY;
+ 
+                addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
+            }
+ 
+            function addParticle(x, y, color) {
+                var particle = new Particle();
+                particle.init(x, y, color);
+                particles.push(particle);
+            }
+ 
+            function updateParticles() {
+ 
+                
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+ 
+               
+                for (var i = particles.length - 1; i >= 0; i--) {
+                    if (particles[i].lifeSpan < 0) {
+                        particles[i].die();
+                        particles.splice(i, 1);
+                    }
+                }
+ 
+            }
+ 
+            function loop() {
+                requestAnimationFrame(loop);
+                updateParticles();
+            }
+ 
+          
+ 
+            function Particle() {
+ 
+                this.character = "*";
+                this.lifeSpan = 120; //ms
+                this.initialStyles = {
+                    "position": "fixed",
+                    "display": "inline-block",
+                    "top": "0px",
+                    "left": "0px",
+                    "pointerEvents": "none",
+                    "touch-action": "none",
+                    "z-index": "10000000",
+                    "fontSize": "25px",
+                    "will-change": "transform"
+                };
+ 
+              
+                this.init = function (x, y, color) {
+ 
+                    this.velocity = {
+                        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+                        y: 1
+                    };
+ 
+                    this.position = { x: x + 10, y: y + 10 };
+                    this.initialStyles.color = color;
+ 
+                    this.element = document.createElement('span');
+                    this.element.innerHTML = this.character;
+                    applyProperties(this.element, this.initialStyles);
+                    this.update();
+ 
+                    document.querySelector('.js-cursor-container').appendChild(this.element);
+                };
+ 
+                this.update = function () {
+                    this.position.x += this.velocity.x;
+                    this.position.y += this.velocity.y;
+                    this.lifeSpan--;
+ 
+                    this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
+                }
+ 
+                this.die = function () {
+                    this.element.parentNode.removeChild(this.element);
+                }
+ 
+            }
+ 
+           
+            function applyProperties(target, properties) {
+                for (var key in properties) {
+                    target.style[key] = properties[key];
+                }
+            }
+ 
+            if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) init();
+        })();    
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <div style="background-image: linear-gradient(#ffffff,#55ff7f, #ffffff);; text-align: center; padding: 40px">
+		  <marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #005500;">
+一念欲乱，万般皆难；一念清净，万事皆顺。---
+淫欲的追逐只会带来短暂的享受，而戒色则能带来长久的内心安宁。---
+欲望是束缚灵魂的枷锁，而戒色则是解开枷锁的钥匙。---
+欲望如潮水，唯有戒色才能守住内心的平静。---
+戒除淫欲，心灵将得到真正的解放与升华。---
+欲望的驱使是沉溺，戒色的选择是远离堕落。---
+色即是空，空即是色。---
+空即色来色即空，色字头上利刀锋；劝君莫堕迷魂阵，何愁富贵不相逢。---
+天眼如车瞬息间，报应昭彰在目前；淫人妻女人淫报，风流莫恋害晚年。---
+欲望无止境，戒色方能自由。---
+花开花谢，人世沧桑，戒色才能保持内心的恒久安宁。---
+从容拒绝，收获内心的坚强和自尊。---
+		  </marquee>
+          <h1 align="center"><b>绿色树枝网</b></h1>
+<p align="center"style="color: #ffc737;">------极乐world</p>
+    </div>
+
+    <article
+      style="background-image: linear-gradient(#ffffff,#55ff7f, #ffffff);
+        max-width: 760px;
+        margin: 30px auto;
+        padding: 15px;
+        color: rgb(36, 41, 46);
+        font-size: 17px;
+        line-height: 1.7;
+        text-size-adjust: 100%;
+      "
+    >
+
+
+
+
+
+
+
+
+ 
+		  <marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #005500;">
+欲望如潮水，唯有戒色才能守住内心的平静。---
+色即是空，空即是色。---
+空即色来色即空，色字头上利刀锋；劝君莫堕迷魂阵，何愁富贵不相逢。---
+天眼如车瞬息间，报应昭彰在目前；淫人妻女人淫报，风流莫恋害晚年。---
+欲望无止境，戒色方能自由。---
+一念欲乱，万般皆难；一念清净，万事皆顺。---
+淫欲的追逐只会带来短暂的享受，而戒色则能带来长久的内心安宁。---
+欲望是束缚灵魂的枷锁，而戒色则是解开枷锁的钥匙。---
+花开花谢，人世沧桑，戒色才能保持内心的恒久安宁。---
+从容拒绝，收获内心的坚强和自尊。---
+戒除淫欲，心灵将得到真正的解放与升华。---
+欲望的驱使是沉溺，戒色的选择是远离堕落。---
+		  </marquee>
+
+
+
+
+<p>还是林子里的树叶多......</p>
+
+	  <hr />
+	  
+      <h2>---视频专区---</h2>
+	  <h3>1·<a href="https://9pa9wj.5xss255aa.life/"
+	  target="_blank">5X视频链接一</a></h3>
+	  
+	  <h3>2·<a href="https://3hmm3n.5x1uiy1.info/"
+	  target="_blank">5X视频链接二</a></h3>
+	  
+	  <h3>3·<a href="https://zjr5zn.5xpps122.life/"
+	  target="_blank">5X视频链接三</a></h3>
+	  
+	  <h3>4·<a href="https://shaonvs32.buzz/"
+	  target="_blank">少女社</a></h3>	  
+	  
+	  <h3>5·<a href="https://yibosp14.buzz/"
+	  target="_blank">易勃视频</a></h3>
+	  
+	  <h3>6·<a href="https://yp1nalmgqujl.com:29875/"
+	  target="_blank">YOURPORN</a></h3>
+	  
+	  <h3>7·<a href="https://5x1688.xyz"
+	  target="_blank">YOURPORN网址丢失点我</a></h3>	  
+
+	  <h3>8·<a href="https://mm18j3.uno/"
+	  target="_blank">MIMI18j</a></h3>
+	  
+	  <h3>9·<a href="https://you.xxxxxxav1x135.xyz/t/24/"
+	  target="_blank">XXXX动画</a></h3>
+	  
+	  <h3>10·<a href="https://91cangku26.buzz/"
+	  target="_blank">91仓库</a></h3>
+	  
+	  <h3>11·<a href="https://banan10.buzz/"
+	  target="_blank">banan</a></h3>
+	  
+	  <h3>12·<a href="https://www.hxbb135.com/"
+	  target="_blank">红杏视频</a></h3>
+	  
+	  <h3>13·<a href="https://wov3.vip"
+	  target="_blank">桃子视频</a></h3>
+	  
+	  <h3>14·<a href="https://www.kmkk102.com/"
+	  target="_blank">快猫视频</a></h3>
+
+      <hr />
+	  
+      <h2>---漫画专区---</h2>
+	  
+      <h3>1·<a href="https://www.fangjidao.cn/"
+	  target="_blank">虚空漫画网</a></h3>
+	  
+	  <h3>2·<a href=""
+	  target="_blank"></a></h3>
+
+      <hr />
+	  
+      <h2>---图片专区---</h2>
+	  
+	  <h3>1·<a href="https://xxxxssss121.buzz/arttype/2000/"
+	  target="_blank">XXXX美图</a></h3>
+	  
+	  <h3>2·<a href="https://xerocos.com/"
+	  target="_blank">Xerocos</a></h3>
+
+      <hr />
+	  <h2>---小说专区---</h2>
+	  
+	  <h3>1·<a href="https://you.xxxxxxav1x135.xyz/arttype/1000/"
+	  target="_blank">XXXX小说</a></h3>
+	  
+	  <h3>2·<a href="https://91fm.online/"
+	  target="_blank">色色有声小说</a></h3>
+	  
+
+      <hr />
+	  <h2>---其它---</h2>
+	  <h3><a href="C654.CC"
+	  target="_blank">软件下载和网址</a></h3>
+	  <h3><a href="https://dl.8546512.com:4139/48/363889"
+	  target="_blank">禁漫天堂app下载</a></h3>
+	  <h3><a href="https://yuietgjfd-f98g2g968d.xodlapp3vs333.sbs/%E5%81%A5%E5%BA%B7%E7%B6%A0%E8%89%B2/kke3d-a.html"
+	  target="_blank">XO软件大全下载</a></h3>
+	  <h3><a href="https://pz.2sy91h.xyz/?ch=anyeav#/home"
+	  target="_blank">Pornhub下载</a></h3>
+	  <h3><a href="https://iyue.f4ttd9j.cc/page.html?dc=brga20812"
+	  target="_blank">逼哩逼哩下载</a></h3>
+ 
+		  <marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #005500;">
+欲望如潮水，唯有戒色才能守住内心的平静。---
+色即是空，空即是色。---
+空即色来色即空，色字头上利刀锋；劝君莫堕迷魂阵，何愁富贵不相逢。---
+天眼如车瞬息间，报应昭彰在目前；淫人妻女人淫报，风流莫恋害晚年。---
+欲望无止境，戒色方能自由。---
+一念欲乱，万般皆难；一念清净，万事皆顺。---
+淫欲的追逐只会带来短暂的享受，而戒色则能带来长久的内心安宁。---
+欲望是束缚灵魂的枷锁，而戒色则是解开枷锁的钥匙。---
+花开花谢，人世沧桑，戒色才能保持内心的恒久安宁。---
+从容拒绝，收获内心的坚强和自尊。---
+戒除淫欲，心灵将得到真正的解放与升华。---
+欲望的驱使是沉溺，戒色的选择是远离堕落。---
+		  </marquee>
+
+
+<h1 align="center"><a style="color: #07abf1"href="javascript:history.back(-1)">（返回）</a></h1>
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
