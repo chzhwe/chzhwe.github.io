@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!-- saved from url=(0018)http://dddddd.top/ -->
+<html lang="zh-cn"><script id="allow-copy_script">(function agent() {
+    let unlock = false
+    document.addEventListener('allow_copy', (event) => {
+      unlock = event.detail.unlock
+    })
+
+    const copyEvents = [
+      'copy',
+      'cut',
+      'contextmenu',
+      'selectstart',
+      'mousedown',
+      'mouseup',
+      'mousemove',
+      'keydown',
+      'keypress',
+      'keyup',
+    ]
+    const rejectOtherHandlers = (e) => {
+      if (unlock) {
+        e.stopPropagation()
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation()
+      }
+    }
+    copyEvents.forEach((evt) => {
+      document.documentElement.addEventListener(evt, rejectOtherHandlers, {
+        capture: true,
+      })
+    })
+  })()</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>在线查Q绑</title>
+    <meta name="keywords" content="查Q绑接口api,8亿q绑查询,Q绑8e数据库,8亿qq绑定数据查询,2022q绑在线查询,2021q绑在线查询,Q绑在线查询官网,查Q绑手机网页源码,查q绑,查地址,查q绑机器人,免费Q绑接口,Q绑QQ查询接口">
+    <meta name="description" content="在线Q绑查询手机号官网 输入qq号即可查询 支持反查">
+    <link href="./在线查Q绑_files/bootstrap.min.css" rel="stylesheet">
+    <script src="./在线查Q绑_files/jquery.min.js.下载"></script>
+    <script src="./在线查Q绑_files/layer.js.下载"></script><link rel="stylesheet" href="./在线查Q绑_files/layer.css" id="layuicss-layer">
+    <script type="text/javascript">
+    </script>
+    <link rel="stylesheet" href="./在线查Q绑_files/layer(1).css" id="layuicss-layer">
+    <link rel="shortcut icon" href="http://dddddd.top/logo.ico">
+    <script charset="UTF-8" id="LA_COLLECT" src="./在线查Q绑_files/js-sdk-pro.min.js.下载"></script>
+    <script>LA.init({ id: "K0lsrTYUk3rfhWYv", ck: "K0lsrTYUk3rfhWYv" })</script>
+    
+<script type="text/javascript">
+    function gg(){
+ layer.alert('Q绑查询系统,欢迎使用!', {
+  icon: 1,
+  title: '公告',
+  skin: 'layer-ext-moon'
+})
+}
+</script>
+</head>
+<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>　
+<script>
+!
+function() {
+    function n(n, e, t) {
+        return n.getAttribute(e) || t
+    }
+    function e(n) {
+        return document.getElementsByTagName(n)
+    }
+    function t() {
+        var t = e("script"),
+        o = t.length,
+        i = t[o - 1];
+        return {
+            l: o,
+            z: n(i, "zIndex", -1),
+            o: n(i, "opacity", .5),
+            c: n(i, "color", "0,0,0"),
+            n: n(i, "count", 99)
+        }
+    }
+    function o() {
+        a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+        c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+    }
+    function i() {
+        r.clearRect(0, 0, a, c);
+        var n, e, t, o, m, l;
+        s.forEach(function(i, x) {
+            for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[e],
+            null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r.stroke()))
+        }),
+        x(i)
+    }
+    var a, c, u, m = document.createElement("canvas"),
+    d = t(),
+    l = "c_n" + d.l,
+    r = m.getContext("2d"),
+    x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    function(n) {
+        window.setTimeout(n, 1e3 / 45)
+    },
+    w = Math.random,
+    y = {
+        x: null,
+        y: null,
+        max: 2e4
+    };
+    m.id = l,
+    m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o,
+    e("body")[0].appendChild(m),
+    o(),
+    window.onresize = o,
+    window.onmousemove = function(n) {
+        n = n || window.event,
+        y.x = n.clientX,
+        y.y = n.clientY
+    },
+    window.onmouseout = function() {
+        y.x = null,
+        y.y = null
+    };
+    for (var s = [], f = 0; d.n > f; f++) {
+        var h = w() * a,
+        g = w() * c,
+        v = 2 * w() - 1,
+        p = 2 * w() - 1;
+        s.push({
+            x: h,
+            y: g,
+            xa: v,
+            ya: p,
+            max: 6e3
+        })
+    }
+    u = s.concat([y]),
+    setTimeout(function() {
+        i()
+    },
+    100)
+} ();
+</script>
+ <script>
+//禁用右键（防止右键查看源代码） 
+    window.oncontextmenu = function () { return false; }
+</script>
+
+    <span class="js-cursor-container"></span>
+    <script>
+        (function fairyDustCursor() {
+ 
+            var possibleColors = ["#f3f3f3", "#8f8f8f", "#d9d9d9"]
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var cursor = { x: width / 2, y: width / 2 };
+            var particles = [];
+ 
+            function init() {
+                bindEvents();
+                loop();
+            }
+ 
+           
+            function bindEvents() {
+                document.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('resize', onWindowResize);
+            }
+ 
+            function onWindowResize(e) {
+                width = window.innerWidth;
+                height = window.innerHeight;
+            }
+ 
+            function onMouseMove(e) {
+                cursor.x = e.clientX;
+                cursor.y = e.clientY;
+ 
+                addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
+            }
+ 
+            function addParticle(x, y, color) {
+                var particle = new Particle();
+                particle.init(x, y, color);
+                particles.push(particle);
+            }
+ 
+            function updateParticles() {
+ 
+                
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+ 
+               
+                for (var i = particles.length - 1; i >= 0; i--) {
+                    if (particles[i].lifeSpan < 0) {
+                        particles[i].die();
+                        particles.splice(i, 1);
+                    }
+                }
+ 
+            }
+ 
+            function loop() {
+                requestAnimationFrame(loop);
+                updateParticles();
+            }
+ 
+          
+ 
+            function Particle() {
+ 
+                this.character = "*";
+                this.lifeSpan = 120; //ms
+                this.initialStyles = {
+                    "position": "fixed",
+                    "display": "inline-block",
+                    "top": "0px",
+                    "left": "0px",
+                    "pointerEvents": "none",
+                    "touch-action": "none",
+                    "z-index": "10000000",
+                    "fontSize": "25px",
+                    "will-change": "transform"
+                };
+ 
+              
+                this.init = function (x, y, color) {
+ 
+                    this.velocity = {
+                        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+                        y: 1
+                    };
+ 
+                    this.position = { x: x + 10, y: y + 10 };
+                    this.initialStyles.color = color;
+ 
+                    this.element = document.createElement('span');
+                    this.element.innerHTML = this.character;
+                    applyProperties(this.element, this.initialStyles);
+                    this.update();
+ 
+                    document.querySelector('.js-cursor-container').appendChild(this.element);
+                };
+ 
+                this.update = function () {
+                    this.position.x += this.velocity.x;
+                    this.position.y += this.velocity.y;
+                    this.lifeSpan--;
+ 
+                    this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
+                }
+ 
+                this.die = function () {
+                    this.element.parentNode.removeChild(this.element);
+                }
+ 
+            }
+ 
+           
+            function applyProperties(target, properties) {
+                for (var key in properties) {
+                    target.style[key] = properties[key];
+                }
+            }
+ 
+            if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) init();
+        })();    
+    </script>
+
+<body>
+	<marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #000000;">仅供查询自己的QQ号码，不是自己的请立即退出本页面！！！否则，发生的一切后果本人不负责！！！
+	</marquee>
+
+    <div class="container">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 center-block" style="float: none;">
+            <br>
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="background: linear-gradient(to right,#b221ff,#14b7ff,#8ae68a);">
+                    <h3 class="panel-title">在线查Q绑</h3>
+                </div>
+                <div class="panel-body" style="text-align: center;">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-warning" style="font-weight: bold;">
+                            <span>输入QQ号即可查询绑定信息</span>
+                        </div>
+                        <div class="list-group-item list-group-item-info" style="font-weight: bold;">
+                            <input class="form-control" id="input" placeholder="请输入QQ号">
+                        </div>
+
+                        <div class="list-group-item">
+                            <a onclick="qbang(&#39;cha&#39;)" class="btn btn-block btn-primary" style="background: linear-gradient(to right,#b221ff,#14b7ff);">查找</a>
+                        </div>
+
+                        <div class="list-group-item list-group-item-warning" style="font-weight: bold;display: none;" id="jiexi_data">
+                            <div class="input-group">
+                                <span class="input-group-addon ">密保手机号</span>
+                                <input type="text" class="form-control" placeholder="" id="mobile" readonly="">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">号码归属地</span>
+                                <input type="text" class="form-control" placeholder="" id="mobileduqu" readonly="">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">LOL信息</span>
+                                <input type="text" class="form-control" placeholder="" id="lol" readonly="">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">微博UID</span>
+                                <input type="text" class="form-control" placeholder="" id="wbuid" readonly="">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">QQ老蜜</span>
+                                <input type="text" class="form-control" placeholder="" id="laomi" readonly="">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon ">密保QQ下面查</span>
+                                <input type="text" class="form-control" placeholder="" id="qqid" readonly="">
+                            </div>
+                            <div style="text-align:center">
+                                <a href=""><span style="color:red">回到主页，拉到最下面！！！赞助网站！！！</span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display: none">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function qbang($mod) {
+            var qq = $('#input').val();
+            if (qq == '') {
+                var alert_1 = layer.msg('请输入QQ', { icon: 5 });
+            } else {
+                if ($mod == 'cha') {
+                    dialog('<div style="text-align:center"><br><b style="color:#ff4425">仅供查询自己的QQ号码<br>不是自己的请立即退出本页面<br>否则，发生的一切后果本人不负责<br><br>确认查询？？</b><br><br><a onclick=' + 'queren("cha")' + ' class="btn btn-block btn-primary" style="background: linear-gradient(to right,#b221ff,#14b7ff);">确认</a><br></div>', 1);
+                }
+            }
+        }
+        function queren(mod) {
+            console.log(mod);
+            layer.close(layer.index);
+            var qq = $('#input').val();
+            if (mod == 'cha') {
+                $url = 'https://zy.xywlapi.cc/qqapi?qq=' + qq;
+            }
+
+            var alert_1 = layer.load(0, { shade: false });
+            $.getJSON($url, function (json) {
+                layer.close(alert_1);
+                if (json['status'] == '200') {
+                    layer.msg('查询成功', { icon: 1 });
+                    $('#mobile').val(json['phone']);
+                    $('#mobileduqu').val(json['phonediqu']);
+                    $('#lol').val(json['lol']);
+                    $('#wbuid').val(json['wb']);
+                    $('#laomi').val(json['qqlm']);
+                    $('#jiexi_data').css("display", "block");
+                } else {
+                    layer.msg(json['message']);
+                    $('#jiexi_data').css("display", "none");
+                }
+            }
+            );
+        }
+        function dialog(code, exit) {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-lan', //加上边框
+                area: ['350px', ''], //宽高
+                closeBtn: exit,
+                shade: 0.8,
+                title: '提示',
+                btnAlign: 'c',
+                content: code,
+            });
+        }
+        gg()
+    </script><div class="layui-layer-move"></div>
+
+    <div class="container">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 center-block" style="float: none;">
+            <br>
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="background: linear-gradient(to right,#b221ff,#14b7ff,#8ae68a);">
+                    <h3 class="panel-title">手机号反查</h3>
+                </div>
+                <div class="panel-body" style="text-align: center;">
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-warning" style="font-weight: bold;">
+                            <span>输入手机号码查QQ信息</span>
+                        </div>
+                        <div class="list-group-item list-group-item-info" style="font-weight: bold;">
+                            <input class="form-control" id="sjhmxx" placeholder="请输入手机号">
+                        </div>
+
+                        <div class="list-group-item">
+                            <a onclick="sjfc(&#39;chasj&#39;)" class="btn btn-block btn-primary" style="background: linear-gradient(to right,#b221ff,#14b7ff);">查找</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none">
+                </div>
+            </div>
+			<marquee scrollamount="5" direction="left" align="Middle" style="font-weight: bold;line-height: 18px;font-size: 15px;color: #000000;">
+				且勿乱开户！！！否则，发生的一切后果本人不负责！！！---且勿乱开户！！！否则，发生的一切后果本人不负责！！！---且勿乱开户！！！否则，发生的一切后果本人不负责！！！
+			</marquee>
+            <div class="panel panel-default text-center">
+                <div class="panel-body"> © 在线查Q绑工具
+                    <br>
+                    <div id="result">
+                        <script src="./在线查Q绑_files/cityjson"></script>
+                        <h4>
+                                    </h4><h5>
+                                        <div class="panel-body"><span style="font-weight:bold"> <i class="fa fa-heart text-danger"> </i></span> <h3><a href="javascript:history.back(-1)"><span style="font-weight:bold"></span>（返回）</a></h3> <br><br>
+                                            当前数据查询在线<span style="color:#ff6700">
+                                                <script type="text/javascript">var zaixian = 299;
+                                                        document.write("" + Math.round(zaixian + Math.random() * 999) + "");</script>309
+                                            </span>人<br>
+                                            
+
+
+                                        </div>
+                                    </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function sjfc($mod) {
+            var sjh = $('#sjhmxx').val();
+            if (sjh == '') {
+                var alert_1 = layer.msg('请输入号码', { icon: 5 });
+            } else {
+                if ($mod == 'chasj') {
+                    dialog('<div style="text-align:center"><br><b style="color:#ff4425">仅供查询自己的QQ号码<br>不是自己的请立即退出本页面<br>否则，发生的一切后果本人不负责<br><br>确认查询？？</b><br><br><a onclick=' + 'que("chasj")' + ' class="btn btn-block btn-primary" style="background: linear-gradient(to right,#b221ff,#14b7ff);">确认</a><br></div>', 1);
+                }
+            }
+        }
+        function que(mod) {
+            console.log(mod);
+            layer.close(layer.index);
+            var sjh = $('#sjhmxx').val();
+            if (mod == 'chasj') {
+                $url = 'https://zy.xywlapi.cc/qqphone?phone=' + sjh;
+            }
+
+            var alert_1 = layer.load(0, { shade: false });
+            $.getJSON($url, function (json) {
+                layer.close(alert_1);
+                if (json['status'] == '200') {
+                    layer.msg('查询成功', { icon: 1 });
+                    $('#qqid').val(json['qq']);
+                    $('#mobileduqu').val(json['phonediqu']);
+                    $('#jiexi_data').css("display", "block");
+                } else {
+                    layer.msg(json['message']);
+                    $('#jiexi_data').css("display", "none");
+                }
+            }
+            );
+        }
+        function dialog(code, exit) {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-lan', //加上边框
+                area: ['350px', ''], //宽高
+                closeBtn: exit,
+                shade: 0.8,
+                title: '提示',
+                btnAlign: 'c',
+                content: code,
+            });
+        }
+        gg()
+    </script>
+<style>
+    .btnstyle{
+
+padding:10px;// 表示上下左右都是10 px
+
+}
+</style><script></script></body></html>
