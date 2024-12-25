@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>送给张玉婷的圣诞树</title>
+    <style>
+        body {
+            background-color: #001f3f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* 圣诞树 */
+        .tree {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 150px solid green;
+            margin-bottom: 20px;
+        }
+
+        .tree::before, .tree::after {
+            content: '';
+            position: absolute;
+            top: -120px;
+            border-left: 80px solid transparent;
+            border-right: 80px solid transparent;
+            border-bottom: 120px solid green;
+        }
+
+        .tree::before {
+            left: -80px;
+        }
+
+        .tree::after {
+            left: 20px;
+        }
+
+        /* 树干 */
+        .trunk {
+            width: 40px;
+            height: 60px;
+            background-color: #8B4513;
+            position: relative;
+            top: -20px;
+            border-radius: 0 0 5px 5px;
+        }
+
+        /* 星星 */
+        .star {
+            position: absolute;
+            top: -220px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: gold;
+            font-size: 40px;
+            text-shadow: 0 0 10px #FFD700;
+            animation: twinkle 2s infinite;
+        }
+
+        /* 闪烁动画 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 彩灯 */
+        .light {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            top: -180px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: glow 2s infinite;
+        }
+
+        .light::before, .light::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: yellow;
+            border-radius: 50%;
+            top: 30px;
+            left: -20px;
+            animation: glow 2s infinite;
+        }
+
+        .light::after {
+            background-color: blue;
+            top: 60px;
+            left: 20px;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 装饰品 */
+        .decoration {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: purple;
+            border-radius: 50%;
+            top: -160px;
+            left: 40%;
+            transform: translateX(-50%);
+            animation: swing 3s infinite;
+        }
+
+        .decoration::before, .decoration::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: orange;
+            border-radius: 50%;
+            top: 30px;
+            left: -20px;
+            animation: swing 3s infinite;
+        }
+
+        .decoration::after {
+            background-color: pink;
+            top: 60px;
+            left: 20px;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(15deg); }
+            50% { transform: translateX(-50%) rotate(0deg); }
+            75% { transform: translateX(-50%) rotate(-15deg); }
+        }
+
+        /* 祝福语 */
+        .message {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 30px;
+            animation: fadeIn 5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="star">★</div>
+    <div class="tree">
+        <div class="light"></div>
+        <div class="decoration"></div>
+    </div>
+    <div class="trunk"></div>
+    <div class="message">
+        亲爱的张玉婷，<br>圣诞快乐！<br>愿我们的爱像这棵树一样，<br>永远常青，充满温暖。
+    </div>
+</body>
+</html>

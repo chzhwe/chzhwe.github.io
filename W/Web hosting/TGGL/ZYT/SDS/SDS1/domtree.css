@@ -1,0 +1,108 @@
+/* 去除默认样式 */
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+body,
+html {
+    overflow: hidden;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #fff;
+    font-size: 11px;
+    width: 100%;
+    height: 100%;
+    background: #b72424;
+    /* 渐变色，处理兼容问题 */
+    background: -moz-radial-gradient(center, ellipse cover, #b72424 0%, #492727 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #b72424), color-stop(100%, #492727));
+    background: -webkit-radial-gradient(center, ellipse cover, #b72424 0%, #492727 100%);
+    background: radial-gradient(center, ellipse cover, #b72424 0%, #492727 100%);
+}
+ 
+@keyframes spin {
+    0% {
+        transform: rotateY(0deg);
+    }
+ 
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+ 
+body {
+    /* 透视效果 */
+    perspective: 3000px;
+    perspective-origin: 0 20%;
+}
+ 
+.tree {
+    margin: 0 auto;
+    position: relative;
+    animation: spin 18s infinite linear;
+    transform-origin: 50% 0;
+    transform-style: preserve-3d;
+}
+ 
+.tree * {
+    position: absolute;
+    transform-origin: 0 0;
+}
+ 
+/* 底下文字部分样式*/
+.project-title {
+    position: absolute;
+    left: 25px;
+    bottom: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+ 
+.credits {
+    position: absolute;
+    right: 20px;
+    bottom: 25px;
+    font-size: 15px;
+    z-index: 20;
+    color: #fff;
+    vertical-align: middle;
+}
+ 
+.credits a {
+    padding: 8px 10px;
+    color: rgba(255, 255, 255, 0.7);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+ 
+.credits a:hover {
+    border-color: #fff;
+    color: #fff;
+}
+ 
+@media screen and (max-width: 1040px) {
+    .project-title {
+        display: none;
+    }
+ 
+    .credits {
+        width: 100%;
+        left: 0;
+        right: auto;
+        bottom: 0;
+        padding: 30px 0;
+        background: #b72424;
+        text-align: center;
+    }
+ 
+    .credits a {
+        display: inline-block;
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+}
