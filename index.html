@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="陈哲威的个人网站。" />
     <meta name="theme-color" content="#FFFFFF" />
-    <meta name="keywords" content="Czwiki导航网, 个人网站, 搜索引擎, 网站导航" />
+    <meta name="keywords" content="CZwiki导航网, 个人网站, 搜索引擎, 网站导航" />
     <meta name="author" content="陈哲威" />
     <meta name="copyright" content="©2023 Czwiki" />
-    <title>Czwiki导航网</title>
+    <title>CZwiki导航网</title>
 
     <!-- 标签页图标 -->
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
@@ -21,53 +21,70 @@
     <!-- 样式表 -->
     <style>
 		
-		/* 高级超链接样式 */
-		.advanced-link {
-		    display: inline-flex;
-		    align-items: center;
-		    justify-content: center;
-		    background: linear-gradient(135deg, #1e88e5, #64b5f6);
-		    color: white;
-		    padding: 10px 20px;
-		    border-radius: 8px;
-		    text-decoration: none;
-		    font-size: 16px;
-		    font-weight: bold;
-		    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-		    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-		    margin-top: 20px;
-		}
-		
-		.advanced-link:hover {
-		    transform: translateY(-2px);
-		    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-		    background: linear-gradient(135deg, #64b5f6, #1e88e5);
-		}
-		
-		.advanced-link:active {
-		    transform: translateY(0);
-		    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-		}
-		
-		.link-container {
-		    display: flex;
-		    align-items: center;
-		    gap: 10px;
-		}
-		
-		.link-text {
-		    font-size: 16px;
-		    font-weight: bold;
-		}
-		
-		.link-arrow {
-		    font-size: 18px;
-		    transition: transform 0.2s ease;
-		}
-		
-		.advanced-link:hover .link-arrow {
-		    transform: translateX(2px);
-		}
+/* 高级超链接样式 */
+.advanced-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e88e5, #64b5f6);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    margin-top: 20px;
+}
+
+.advanced-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #64b5f6, #1e88e5);
+}
+
+.advanced-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.link-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.link-text {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.link-arrow {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.advanced-link:hover .link-arrow {
+    transform: translateX(2px);
+}
+
+/* 响应式设计 */
+@media (max-width: 600px) {
+    .advanced-link {
+        padding: 10px 15px;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .link-text {
+        font-size: 14px;
+    }
+
+    .link-arrow {
+        font-size: 16px;
+    }
+}
 		
         /* 全局样式 */
         body {
@@ -149,6 +166,7 @@
             display: none;
             flex-direction: column;
             cursor: pointer;
+            margin-left: 20px;
         }
 
         .bar {
@@ -158,6 +176,72 @@
             margin: 4px 0;
             transition: 0.4s;
         }
+
+        /* 汉堡菜单动画 */
+        .navbar-toggle:hover .bar {
+            background-color: #ffffffdd;
+        }
+
+        .navbar-toggle.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .navbar-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar-toggle.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* 导航菜单展开样式 */
+        .navbar-items.expanded {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: linear-gradient(135deg, #e6e9ef, #f5f7fa);
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 200px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .navbar-items.expanded .navbar-item {
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-items.expanded .navbar-item:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
 
         /* 小屏幕样式 */
         @media (max-width: 768px) {
@@ -207,85 +291,6 @@
             font-size: 1.2em;
             margin-top: 10px;
         }
-
-        /* 搜索框容器 */
-        .search-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .search-container p {
-            margin: 10px 0;
-            color: #333;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .search-container .search-bar {
-            width: calc(100% - 24px);
-            padding: 12px;
-            font-size: 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            margin: 10px 0;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .search-bar:focus {
-            border-color: #64b5f6;
-            box-shadow: 0 0 8px rgba(100, 181, 254, 0.3);
-            outline: none;
-        }
-
-        /* 搜索引擎选择框 */
-        .search-engine-select {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background-color: white;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .search-engine-select:focus {
-            border-color: #64b5f6;
-            box-shadow: 0 0 8px rgba(100, 181, 254, 0.3);
-            outline: none;
-        }
-
-        /* 搜索按钮 */
-        .search-button {
-            width: 100%;
-            padding: 12px;
-            font-size: 16px;
-            background: linear-gradient(135deg, #1e88e5, #64b5f6);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 10px;
-        }
-
-        .search-button:hover {
-            background: linear-gradient(135deg, #64b5f6, #1e88e5);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .search-button:active {
-            transform: translateY(1px);
-        }
-
         /* 内容区域 */
         .content {
             max-width: 800px;
@@ -429,31 +434,31 @@
     <!-- 导航栏 -->
     <nav class="navbar" id="nav">
         <div class="navbar-container">
-            <a href="#home" class="navbar-logo">主页</a>
+            <a href="./navigation.html" class="navbar-logo">➡️导航页面➡️</a>
             <div class="navbar-toggle" id="navbarToggle">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
             <ul class="navbar-items" id="navbarItems">
-                <li><a href="#about" class="navbar-item">关于</a></li>
-                <li><a href="#works" class="navbar-item"></a></li>
-                <li><a href="#contact" class="navbar-item"></a></li>
+                <li><b><a style="color: #000000;" href="#about" class="navbar-item">🌐关于网站</a></b></li>
+                <li><b><a style="color: #000000;" href="#works" class="navbar-item">🌐联系方式</a></b></li>
+                <li><b><a style="color: #000000;" href="#contact" class="navbar-item">🌐网站历史</a></b></li>
             </ul>
         </div>
     </nav>
 
     <!-- 头部 -->
     <div class="header">
-        <h1>Czwiki导航网</h1>
+        <h1>CZwiki导航网</h1>
         <h3>欢迎来到 CZwiki 导航网，这里为您提供便捷的网络入口。</h3>
         <div class="time" id="currentTime"></div>
     </div>
     <!-- 内容 -->
     <div class="content">
-        <p>嗨~欢迎来到<b>Czwiki</b>导航网!</p>
+        <p>😆嗨~欢迎来到<b>CZwiki</b>导航网!😀</p>
         <!-- 获取IP -->
-        <p>您的IP地址是: <span id="ip"></span></p>
+        <p>📶您的IP地址是: <span id="ip"></span></p>
         <script>
             fetch('https://api.ipify.org/?format=json')
                 .then(response => response.json())
@@ -462,42 +467,61 @@
                 })
                 .catch(error => console.error(error));
         </script>
-		<p>点击<b>下方按钮进入</b>导航页面!</p>
+		<p>点击网站<b>左上方导航页面</b>进入↖️↖️↖️️</p>
+		<p>或点击<b>下方按钮</b>进入↙️↙️↙️</p>
+		<p><b>👇👇👇</b></p>
 		<a href="./navigation.html" class="advanced-link" target="_blank" rel="noopener noreferrer">
-		    <div class="link-container">
-		        <span class="link-text">进入导航页面</span>
-		        <span class="link-arrow">→</span>
-		    </div>
+			<div class="link-container">
+				<span class="link-text">🧭进入导航页面🧭</span>
+				<span class="link-arrow">️</span>
+			</div>
 		</a>
-        <p>该项目未被允许请勿直接用于商业等用途，本项目<b>仅供娱乐</b>。</p>
+        <p>当然，您可以继续往下翻查看网站提供的<b>其他项目</b>📉📊📈</p>
         <hr />
         <div class="module">
             <p>网站目前已在 <a style="color: #2196f3;" href="https://github.com/" target="_blank">Github</a> 开源，可以进入我的
-                <a href="https://github.com/chzhwe" target="_blank">Github主页</a> 查找源码。
+                <a href="https://github.com/chzhwe" target="_blank">Github主页</a> 查找源码😎
             </p>
-            <p>想看又嫌麻烦的可以按键盘上的 [<b>F12</b>] 键简略看一下 <b>源代码</b>。</p>
+            <p>想看又嫌麻烦的可以按键盘上的 [<b>F12</b>] 键简略看一下 <b>源代码</b>😁</p>
         </div>
         <div class="module" style="margin-top: 20px;">
-            <p>这是我的 <a href="https://space.bilibili.com/1831160594?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">
-                    bilibili主页
-                    <span class="mp">(程序内无法打开，请用浏览器打开)</span>
-                </a>，可私信反应网页问题。</p>
-            <p>感兴趣的可以添加我的 <b>STEAM</b>好友：<a target="_blank" rel="noopener noreferrer" href="https://steamcommunity.com/profiles/76561199308126706/">好友代码:1347860978</a>，过程中可能需要打开加速器。<span class="mp"></span></p>
-            <p>网站绝对安全，谢绝一切 <b>网页病毒</b>。</p>
-            <p>网站从始至终都在坚持更新，<b>想浏览之前的网站长什么样子</b>？点击查看: <a href="./W/Web hosting/Web hosting.html">[网站历史样式]</a></p>
+            <p>感兴趣的可以添加我的 <b>STEAM</b>好友：<a target="_blank" rel="noopener noreferrer" href="https://steamcommunity.com/profiles/76561199308126706/">我的STEAM主页</a>️️📰<span class="mp"></span></p>
+			<p>我的<b>STEAM</b>好友代码:<a style="color: #2196f3;"><b>1347860978</b></a>🔖</p>
+            <p>网站从始至终都在坚持更新，<b>想浏览之前的网站长什么样子</b>？🤔</p><b>点击查看: <b>
+			<a href="./other/HistoryWebpage.html" class="advanced-link" target="_blank" rel="noopener noreferrer">
+				<div class="link-container">
+					<span class="link-text">⏳网站历史样式⌛</span>
+					<span class="link-arrow">️</span>
+				</div>
+			</a></p>
         </div>
         <hr />
-        <h3>其他项目:
-            <a style="margin:20px" href="./W/qqchabang/在线查Q绑.html">minecraft服务器</a>
-            <a style="margin:20px" href="./W/Project/Project.html">ZweiAi</a>
+        <h1><b>📇其他项目</b>:</h1>
+		<details>
+		    <summary><b>👉点击查看服务器地址👈</b></summary>
+		    <ol>
+		        <li><a style="margin:20px" href="./other/Game/BrowserGames.html">网页小游戏🎮</a></li>
+		        <li><a style="margin:20px" href="./other/ZweiAI.html">ZweiAi🤖</a></li>
+		    </ol>
+			<p>点击即可进入对应<b>项目</b>网页</p>
+		</details>
         </h3>
         <hr />
-        <h1><b>精选网址分享</b>:</h1>
+        <h1><b>💾minecraft服务器</b>:</h1>
+		<p>游戏版本：<b>Java1.20.4💠</b></p>
         <details>
-            <summary><b>（点击展开或关闭列表）</b></summary>
+            <summary><b>👉点击查看服务器地址👈</b></summary>
             <ol>
-                <li><a href="https://classic.minecraft.net/" target="_blank" style="color: #2196f3;;font-size=20px">我的世界在线游玩</a></li>
+                <li><a target="_blank" style="color: #2196f3;;font-size=20px">frp-off.com:13019</a></li>
+				<button onclick="copyToClip('frp-off.com:13019')">点击复制：frp-off.com:13019</button>
+				<li><a target="_blank" style="color: #2196f3;;font-size=20px">frp-act.com:35595</a></li>
+				<button onclick="copyToClip('frp-act.com:35595')">点击复制：frp-act.com:35595</button>
+				<li><a target="_blank" style="color: #2196f3;;font-size=20px">60.215.128.117:13019</a></li>
+				<button onclick="copyToClip('60.215.128.117:13019')">点击复制：60.215.128.117:13019</button>
+				<li><a target="_blank" style="color: #2196f3;;font-size=20px">122.228.26.226:35595</a></li>
+				<button onclick="copyToClip('122.228.26.226:35595')">点击复制：122.228.26.226:35595</button>
             </ol>
+			<p>点击地址即可<b>复制</b>到剪贴板📋</p>
         </details>
     </div>
 
@@ -553,8 +577,8 @@
             window.addEventListener("load", updateRuntime);
         </script>
 
-        <p>未经允许请勿用于商业用途,本项目仅供娱乐!</p>
-        <h3><b>©2023 Czwiki 无公安网备案</b></h3>
+        <p>⚠️未经允许请勿用于商业用途,本项目仅供娱乐!⚠️</p>
+        <h3><b>©️2025 Czwiki 无公安网备案</b>😅</h3>
     </div>
 
     <!-- 时间显示脚本 -->
@@ -654,6 +678,114 @@
                 });
         });
     </script>
+	
+	<!-- 复制点击的文本至剪贴板 -->
+	<script>
+	function copyToClip(content) {
+	var aux = document.createElement("input");
+	aux.setAttribute("value", content);
+	document.body.appendChild(aux);
+	aux.select();
+	document.execCommand("copy");
+	document.body.removeChild(aux);
+	alert("复制成功！️注意：此服务器是Java版我的世界V1.20.4");
+
+	}
+	</script>
+	
+    <script>
+        document.getElementById('navbarToggle').addEventListener('click', function () {
+            const navbarItems = document.getElementById('navbarItems');
+            const navbarToggle = document.getElementById('navbarToggle');
+            navbarItems.classList.toggle('expanded');
+            navbarToggle.classList.toggle('active');
+        });
+    </script>
+	
+	<!-- 蛛网背景 -->
+	<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>　
+	<script>
+	!
+	function() {
+	    function n(n, e, t) {
+	        return n.getAttribute(e) || t
+	    }
+	    function e(n) {
+	        return document.getElementsByTagName(n)
+	    }
+	    function t() {
+	        var t = e("script"),
+	        o = t.length,
+	        i = t[o - 1];
+	        return {
+	            l: o,
+	            z: n(i, "zIndex", -1),
+	            o: n(i, "opacity", .5),
+	            c: n(i, "color", "0,0,0"),
+	            n: n(i, "count", 99)
+	        }
+	    }
+	    function o() {
+	        a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+	        c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+	    }
+	    function i() {
+	        r.clearRect(0, 0, a, c);
+	        var n, e, t, o, m, l;
+	        s.forEach(function(i, x) {
+	            for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[e],
+	            null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r.stroke()))
+	        }),
+	        x(i)
+	    }
+	    var a, c, u, m = document.createElement("canvas"),
+	    d = t(),
+	    l = "c_n" + d.l,
+	    r = m.getContext("2d"),
+	    x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+	    function(n) {
+	        window.setTimeout(n, 1e3 / 45)
+	    },
+	    w = Math.random,
+	    y = {
+	        x: null,
+	        y: null,
+	        max: 2e4
+	    };
+	    m.id = l,
+	    m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o,
+	    e("body")[0].appendChild(m),
+	    o(),
+	    window.onresize = o,
+	    window.onmousemove = function(n) {
+	        n = n || window.event,
+	        y.x = n.clientX,
+	        y.y = n.clientY
+	    },
+	    window.onmouseout = function() {
+	        y.x = null,
+	        y.y = null
+	    };
+	    for (var s = [], f = 0; d.n > f; f++) {
+	        var h = w() * a,
+	        g = w() * c,
+	        v = 2 * w() - 1,
+	        p = 2 * w() - 1;
+	        s.push({
+	            x: h,
+	            y: g,
+	            xa: v,
+	            ya: p,
+	            max: 6e3
+	        })
+	    }
+	    u = s.concat([y]),
+	    setTimeout(function() {
+	        i()
+	    },
+	    100)
+	} ();
+	</script>
 </body>
 
 </html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="极乐网 - 改进版" />
+    <meta name="theme-color" content="#1E90FF" />
+    <title>极乐网 - 改进版</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'SimSun', 'Rexing', sans-serif; /* 中文宋体、瑞星字体 */
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #ffd700, #fffef5);
+            color: #333; /* 深灰色文字 */
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00CED1; /* 天蓝色 */
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 36px; /* 增大标题字体 */
+        }
+
+        h2 {
+            text-align: center;
+            color: #FF69B4; /* 粉色 */
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 32px; /* 增大标题字体 */
+        }
+
+        h3 {
+            text-align: center;
+            color: #4682B4; /* 钢蓝色 */
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 28px; /* 增大标题字体 */
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: center;
+            color: #333; /* 深灰色文字 */
+            font-size: 20px; /* 增大段落字体 */
+        }
+
+        /* 超链接样式 */
+        a {
+            color: #1E90FF; /* 宝石蓝 */
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            transform: scale(1.1);
+            color: #FF4500; /* 橘红色 */
+        }
+
+        /* 每个板块的超链接颜色 */
+        .section.video a {
+            color: #1E90FF; /* 宝石蓝 */
+        }
+
+        .section.video a:hover {
+            color: #1C86EE; /* 深宝石蓝 */
+        }
+
+        .section.comic a {
+            color: #FF69B4; /* 粉色 */
+        }
+
+        .section.comic a:hover {
+            color: #FF1493; /* 热粉色 */
+        }
+
+        .section.image a {
+            color: #4682B4; /* 钢蓝色 */
+        }
+
+        .section.image a:hover {
+            color: #4169E1; /* 皇家蓝 */
+        }
+
+        .section.novel a {
+            color: #FFD700; /* 金色 */
+        }
+
+        .section.novel a:hover {
+            color: #FF8C00; /* 橙色 */
+        }
+
+        .section.other a {
+            color: #3CB371; /* 苍绿色 */
+        }
+
+        .section.other a:hover {
+            color: #2E8B57; /* 深苍绿 */
+        }
+
+        hr {
+            margin: 30px auto;
+            width: 80%;
+            border: none;
+            border-top: 1px dashed #333; /* 深灰色文字 */
+        }
+
+        /* 响应式布局 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px; /* 增加区块间距 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 返回按钮样式 */
+        .return-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 50px;
+            background: linear-gradient(135deg, #0000FF, #FF69B4); /* 蓝粉渐变 */
+            color: #fff;
+            border-radius: 25px;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .return-button:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .return-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* 移动端样式 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 15px;
+            }
+        }
+
+        /* 列表样式 */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 22px; /* 增大列表字体 */
+            line-height: 1.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 标题 -->
+        <h1>〰️▫️▫️▫️️🔞   <b>极乐网</b>   ❗▫️▫️▫️️〰️️</h1>
+		<h3>请确保您<a style="color: #FF1493;">已满18周岁</a>否则请按左下角按键返回️️</h3>
+        <!-- 引言 -->
+        <div class="section">
+            <p>请确保已关闭或已调小音量🔇</p>
+            <p>♀淫欲的追逐只会带来短暂的享受</p>
+			<p>♂️️而戒色则能带来长久的内心安宁🍀</p>
+        </div>
+
+        <!-- 推荐 -->
+        <div class="section" style="background-color: rgba(255, 255, 255, 0.08);">
+            <h2>🏅推荐🎗️</h2>
+            <ul>
+                <li><a href="http://45.126.181.87/clforward.html" target="_blank" class="hover-effect">XZZ53</a></li>
+            </ul>
+        </div>
+
+        <!-- 视频专区 -->
+        <div class="section video">
+            <h2>🎥视频专区🎬</h2>
+            <ul>
+                <li><a href="https://755964.com/" target="_blank" class="hover-effect">乱伦网</a></li>
+                <li><a href="http://45.126.181.87/clforward.html" target="_blank" class="hover-effect">XZZ53</a></li>
+                <li><a href="https://iramhfze03ufd5h.i.ind188.mmm135.55uupx.xyz/" target="_blank" class="hover-effect">5X视频</a></li>
+                <li><a href="" target="_blank" class="hover-effect"></a></li>
+                <li><a href="" target="_blank" class="hover-effect"></a></li>
+                <li><a href="https://yp1nalmgqujl.com:29875/" target="_blank" class="hover-effect">YOURPORN</a></li>
+                <li><a href="https://5x1688.xyz" target="_blank" class="hover-effect">5X视频网址</a></li>
+                <li><a href="" target="_blank" class="hover-effect"></a></li>
+                <li><a href="https://you.xxxxxxav1x135.xyz/t/24/" target="_blank" class="hover-effect">XXXX动画</a></li>
+                <li><a href="" target="_blank" class="hover-effect"></a></li>
+            </ul>
+        </div>
+
+        <!-- 漫画专区 -->
+        <div class="section comic">
+            <h2>📔漫画专区📖</h2>
+            <ul>
+                <li><a href="https://www.fangjidao.cn/" target="_blank" class="hover-effect">虚空漫画网</a></li>
+                <li><a href="" target="_blank" class="hover-effect"></a></li>
+            </ul>
+        </div>
+
+        <!-- 图片专区 -->
+        <div class="section image">
+            <h2>📷图片专区🖼️️</h2>
+            <ul>
+                <li><a href="https://xxxxssss121.buzz/arttype/2000/" target="_blank" class="hover-effect">XXXX美图</a></li>
+                <li><a href="https://xerocos.com/" target="_blank" class="hover-effect">Xerocos</a></li>
+            </ul>
+        </div>
+
+        <!-- 小说专区 -->
+        <div class="section novel">
+            <h2>📚小说专区📝</h2>
+            <ul>
+                <li><a href="https://you.xxxxxxav1x135.xyz/arttype/1000/" target="_blank" class="hover-effect">XXXX小说</a></li>
+                <li><a href="" target="_blank" class="hover-effect"></a></li>
+            </ul>
+        </div>
+
+        <!-- 其它 -->
+        <div class="section other">
+            <h2>🏷️其它💡</h2>
+            <ul>
+                <li><a href="https://dl.8546512.com:4139/48/363889" target="_blank" class="hover-effect">禁漫天堂app下载</a></li>
+                <li><a href="https://pz.2sy91h.xyz/?ch=anyeav#/home" target="_blank" class="hover-effect">Pornhub下载</a></li>
+                <li><a href="https://iyue.f4ttd9j.cc/page.html?dc=brga20812" target="_blank" class="hover-effect">逼哩逼哩下载</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 返回键 -->
+    <div class="return-button" id="returnButton" onclick="history.back(-1)">
+        <span class="return-text">返回</span>
+    </div>
+
+    <script>
+        // 返回按钮显示逻辑
+        let scrollTimeout;
+        let lastScrollTop = 0;
+        const returnButton = document.getElementById('returnButton');
+        let isScrolling = false;
+
+        window.onload = function() {
+            window.addEventListener('scroll', scrollHandler, { passive: true });
+        }
+
+        function scrollHandler() {
+            clearTimeout(scrollTimeout);
+            // 显示返回按钮
+            returnButton.style.opacity = '1';
+            // 如果停止滚动5秒后隐藏返回按钮
+            scrollTimeout = setTimeout(function() {
+                returnButton.style.opacity = '0';
+            }, 5000);
+        }
+    </script>
+	<h1>▫️▫️▫️▫️▫️️▫</h1>
+	<h1>️🐍年祝大家越🐍越多</h1>
+	<h1>▫️▫️▫️▫️▫️▫️</h1>
+</body>
+
+</html>
