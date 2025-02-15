@@ -442,8 +442,8 @@
             </div>
             <ul class="navbar-items" id="navbarItems">
                 <li><b><a style="color: #000000;" href="#about" class="navbar-item">🌐关于网站</a></b></li>
-                <li><b><a style="color: #000000;" href="#works" class="navbar-item">🌐联系方式</a></b></li>
-                <li><b><a style="color: #000000;" href="#contact" class="navbar-item">🌐网站历史</a></b></li>
+                <li><b><a style="color: #000000;" href="./other/HistoryWebpage/HistoryWebpage.html" class="navbar-item">🌐网站历史</a></b></li>
+                <li><b><a style="color: #000000;" href="#contact" class="navbar-item">🌐赞助网站</a></b></li>
             </ul>
         </div>
     </nav>
@@ -467,10 +467,11 @@
                 })
                 .catch(error => console.error(error));
         </script>
-		<p>点击网站<b>左上方导航页面</b>进入↖️↖️↖️️</p>
+		<p>进入<b>CZwiki导航</b>页面❓</p>
+		<p>点击<b>左上方导航页面</b>进入↖️↖️↖️️</p>
 		<p>或点击<b>下方按钮</b>进入↙️↙️↙️</p>
 		<p><b>👇👇👇</b></p>
-		<a href="./navigation.html" class="advanced-link" target="_blank" rel="noopener noreferrer">
+		<a href="./navigation.html" class="advanced-link" rel="noopener noreferrer">
 			<div class="link-container">
 				<span class="link-text">🧭进入导航页面🧭</span>
 				<span class="link-arrow">️</span>
@@ -488,7 +489,7 @@
             <p>感兴趣的可以添加我的 <b>STEAM</b>好友：<a target="_blank" rel="noopener noreferrer" href="https://steamcommunity.com/profiles/76561199308126706/">我的STEAM主页</a>️️📰<span class="mp"></span></p>
 			<p>我的<b>STEAM</b>好友代码:<a style="color: #2196f3;"><b>1347860978</b></a>🔖</p>
             <p>网站从始至终都在坚持更新，<b>想浏览之前的网站长什么样子</b>？🤔</p><b>点击查看: <b>
-			<a href="./other/HistoryWebpage.html" class="advanced-link" target="_blank" rel="noopener noreferrer">
+			<a href="./other/HistoryWebpage/HistoryWebpage.html" class="advanced-link" rel="noopener noreferrer">
 				<div class="link-container">
 					<span class="link-text">⏳网站历史样式⌛</span>
 					<span class="link-arrow">️</span>
@@ -496,12 +497,13 @@
 			</a></p>
         </div>
         <hr />
-        <h1><b>📇其他项目</b>:</h1>
+        <h1><b>📇其他有趣项目</b>:</h1>
 		<details>
-		    <summary><b>👉点击查看服务器地址👈</b></summary>
+		    <summary><b>👉点击展开查看项目👈</b></summary>
 		    <ol>
 		        <li><a style="margin:20px" href="./other/Game/BrowserGames.html">网页小游戏🎮</a></li>
 		        <li><a style="margin:20px" href="./other/ZweiAI.html">ZweiAi🤖</a></li>
+				<li><a style="margin:20px" href="./other/qqchabang/在线查Q绑.html">Q绑查询系统🗃️</a></li>
 		    </ol>
 			<p>点击即可进入对应<b>项目</b>网页</p>
 		</details>
@@ -552,7 +554,7 @@
                 const count = visits ? parseInt(visits) + 1 : 1;
                 const expires = new Date(Date.now() + 365 * 86400000); // 1 year
                 setCookie("visits", count, expires);
-                document.getElementById("visits").textContent = `访问次数: ${count}`;
+                document.getElementById("visits").textContent = `您近期已访问: ${count}次`;
             }
 
             window.addEventListener("load", updateVisits);
@@ -561,7 +563,7 @@
         <!-- 运行时间脚本 -->
         <script>
             function updateRuntime() {
-                const startDate = new Date("2024-02-15T00:00:00Z");
+                const startDate = new Date("2022-09-15T00:00:00Z");
                 const now = new Date();
                 const runtime = now - startDate;
 
@@ -570,7 +572,7 @@
                 const minutes = Math.floor((runtime % 3600000) / 60000);
                 const seconds = Math.floor((runtime % 60000) / 1000);
 
-                document.getElementById("runtime").textContent = `运行时间: ${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+                document.getElementById("runtime").textContent = `网站已运行: ${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
             }
 
             setInterval(updateRuntime, 1000);
@@ -659,23 +661,6 @@
                     }
                 }
             });
-        });
-    </script>
-
-    <!-- 实时天气脚本 -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const apiKey = 'YOUR_API_KEY';
-            const city = 'Beijing';
-
-            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=zh_cn`)
-                .then(response => response.json())
-                .then(data => {
-                    const weather = document.getElementById("weather");
-                    weather.innerHTML = `
-                        <p>当前天气：${data.main.temp}°C，${data.weather[0].description}</p>
-                    `;
-                });
         });
     </script>
 	
