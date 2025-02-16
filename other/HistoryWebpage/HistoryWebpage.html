@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="陈哲威的个人网站。" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="keywords" content="CZwiki导航网, 个人网站, 搜索引擎, 网站导航" />
+    <meta name="author" content="陈哲威" />
+    <meta name="copyright" content="©2023 Czwiki" />
+    <title>CZwiki导航网</title>
+    <style>
+        /* 高级超链接样式 */
+        .advanced-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e88e5, #64b5f6);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .advanced-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+        }
+
+        .advanced-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .link-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-text {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .link-arrow {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .advanced-link:hover .link-arrow {
+            transform: translateX(2px);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .advanced-link {
+                padding: 10px 15px;
+                font-size: 14px;
+                margin-top: 15px;
+            }
+
+            .link-text {
+                font-size: 14px;
+            }
+
+            .link-arrow {
+                font-size: 16px;
+            }
+        }
+
+        /* 全局样式 */
+        body {
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #d1e8ff);
+            color: #444;
+            margin: 0;
+            padding: 0;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        body::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0d47a1;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: linear-gradient(135deg, #1e88e5, #64b5f6);
+            padding: 10px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-logo {
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar-items {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-item {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-item:hover {
+            color: #ffffffdd;
+        }
+
+        /* 汉堡菜单样式 */
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* 汉堡菜单动画 */
+        .navbar-toggle:hover .bar {
+            background-color: #ffffffdd;
+        }
+
+        .navbar-toggle.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .navbar-toggle.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar-toggle.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* 导航菜单展开样式 */
+        .navbar-items.expanded {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: linear-gradient(135deg, #e6e9ef, #f5f7fa);
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            width: 200px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .navbar-items.expanded .navbar-item {
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-items.expanded .navbar-item:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* 小屏幕样式 */
+        @media (max-width: 768px) {
+            .navbar-toggle {
+                display: flex;
+            }
+
+            .navbar-items {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                width: 100%;
+            }
+
+            .navbar-items.active {
+                display: flex;
+            }
+        }
+
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, #1e88e5, #64b5f6);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            margin-top: 60px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .header .time {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* 内容区域 */
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 展开列表样式 */
+        details {
+            margin: 20px 0;
+            border: 1px solid rgba(100, 181, 254, 0.2);
+            border-radius: 12px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        details summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            background: linear-gradient(135deg, #e6e9ef, #f5f7fa);
+            border-radius: 12px;
+            border-bottom: 1px solid rgba(100, 181, 254, 0.2);
+            outline: none;
+            transition: background 0.3s ease;
+        }
+
+        details summary:hover {
+            background: linear-gradient(135deg, #f5f7fa, #e6e9ef);
+        }
+
+        details[open] summary {
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
+        }
+
+        details ol {
+            padding-left: 20px;
+            margin-top: 10px;
+            background-color: white;
+            border-top: 1px solid rgba(100, 181, 254, 0.2);
+            border-bottom: 1px solid rgba(100, 181, 254, 0.2);
+            border-radius: 0 0 12px 12px;
+        }
+
+        details ol li {
+            margin: 10px 0;
+            padding: 5px;
+            border-bottom: 1px dashed rgba(100, 181, 254, 0.2);
+        }
+
+        /* 底部样式 */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e88e5, #64b5f6);
+            color: white;
+            margin-top: 40px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+        }
+
+        .footer a {
+            color: white;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 访问次数和运行时间 */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .stats span {
+            background: linear-gradient(135deg, #e3f2fd, #d1e8ff);
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #2196f3;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 次级模块样式 */
+        .module {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(100, 181, 254, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(100, 181, 254, 0.1);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .search-container {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .search-bar {
+                width: calc(100% - 24px);
+            }
+
+            .search-engine-select {
+                width: 100%;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .content {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
+
+            .module {
+                margin: 15px 0;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="nav">
+        <div class="navbar-container">
+            <a href="javascript:history.back(-1)" class="navbar-logo">⬅️️返回主页面⬅️</a>
+            <div class="navbar-toggle" id="navbarToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="navbar-items" id="navbarItems">
+                <li><b><a style="color: #000000;" href="https://chzhwe.github.io" class="navbar-item">🌐网站主页</a></b></li>
+                <li><b><a style="color: #000000;" href="#about" class="navbar-item">🌐关于网站</a></b></li>
+                <li><b><a style="color: #000000;" href="#contact" class="navbar-item">🌐赞助网站</a></b></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 头部 -->
+    <div class="header">
+        <h1>网页历史样式</h1>
+		<h3><b>😵网站能有现在这个样子，少不了站长的打磨🤯</b></h3>
+        <div class="time" id="currentTime"></div>
+    </div>
+    <!-- 内容 -->
+    <div class="content">
+		
+        <details>
+            <summary><b>2.0版本</b></summary>
+			<ol>
+			    <li><a style="margin:20px" href="./2.0/2.1.1/index.html" target="_blank">V2.1.1</a>2025/2/14</li>
+			    <li><a style="margin:20px" href="./2.0/2.1.0/index.html" target="_blank">V2.1.0</a>2025/2/12</li>
+				<li><a style="margin:20px" href="./2.0/2.0.1/index.html" target="_blank">V2.0.1</a>2025/2/11</li>
+			    <li><a style="margin:20px" href="./2.0/2.0.0/index.html" target="_blank">V2.0.0</a>2024/5/14</li>
+			</ol>
+        </details>
+
+        <details>
+            <summary><b>1.0版本</b></summary>
+			<ol>
+			    <li><a style="margin:20px" href="./1.0/1.4.1/index.html" target="_blank">V1.4.1</a>2024/2/15</li>
+				<li><a style="margin:20px" href="./1.0/1.4.0/index.html" target="_blank">V1.4.0</a>2023/10/23</li>
+				<li><a style="margin:20px" href="./1.0/1.3.1/index.html" target="_blank">V1.3.1</a>2023/10/22</li>
+				<li><a style="margin:20px" href="./1.0/1.3.0/index.html" target="_blank">V1.3.0</a>2023/10/21</li>
+				<li><a style="margin:20px" href="./1.0/1.2.1/index.html" target="_blank">V1.2.1</a>2023/10/19</li>
+				<li><a style="margin:20px" href="./1.0/1.2.0/index.html" target="_blank">V1.2.0</a>2023/10/17</li>
+				<li><a style="margin:20px" href="./1.0/1.1.1/index.html" target="_blank">V1.1.1</a>2023/10/6</li>
+				<li><a style="margin:20px" href="./1.0/1.1.0/index.html" target="_blank">V1.1.0</a>2023/10/5</li>
+				<li><a style="margin:20px" href="./1.0/1.0.1/index.html" target="_blank">V1.0.1</a>2023/10/1</li>
+				<li><a style="margin:20px" href="./1.0/1.0.0/index.html" target="_blank">V1.0.0</a>2023/9/30</li>
+			</ol>
+        </details>
+		
+		<details>
+		    <summary><b>0.0版本</b></summary>
+			<ol>
+			    <li><a style="margin:20px" href="./0.0/0.2.1/index.html" target="_blank">V0.2.1</a>2023/9/29</li>
+			    <li><a style="margin:20px" href="./0.0/0.2.0/index.html" target="_blank">V0.2.0</a>2023/9/28</li>
+			    <li><a style="margin:20px" href="./0.0/0.1.1/index.html" target="_blank">V0.1.1</a>2023/8/21</li>
+				<li><a style="margin:20px" href="./0.0/0.1.0/index.html" target="_blank">V0.1.0</a>2022/12/13</li>
+				<li><a style="margin:20px" href="./0.0/0.0.1/index.html" target="_blank">V0.0.1</a>2022/9/7</li>
+			</ol>
+		</details>
+					<h3>自站主第一次发布网页至现在已经👇👇<h3>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <!-- 访问数量和运行时间 -->
+        <div class="stats">
+            <span class="runtime" id="runtime"></span>
+        </div>
+        <!-- 运行时间脚本 -->
+        <script>
+            function updateRuntime() {
+                const startDate = new Date("2022-09-15T00:00:00Z");
+                const now = new Date();
+                const runtime = now - startDate;
+
+                const days = Math.floor(runtime / (86400000));
+                const hours = Math.floor((runtime % 86400000) / 3600000);
+                const minutes = Math.floor((runtime % 3600000) / 60000);
+                const seconds = Math.floor((runtime % 60000) / 1000);
+
+                document.getElementById("runtime").textContent = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+            }
+
+            setInterval(updateRuntime, 1000);
+            window.addEventListener("load", updateRuntime);
+        </script>
+
+        <p>⚠️未经允许请勿用于商业用途,本项目仅供娱乐!⚠️</p>
+        <h3><b>©️2025 Czwiki 无公安网备案</b>😅</h3>
+    </div>
+
+    <!-- 时间显示脚本 -->
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById("currentTime").textContent = `${year}年${month}月${day}日 ${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateTime, 1000);
+        window.addEventListener("load", updateTime);
+    </script>
+
+    <!-- 导航栏显示和隐藏脚本 -->
+    <script>
+        let lastScrollPosition = 0;
+        const nav = document.getElementById('nav');
+        const scrollThreshold = 50; // 设置滚动阈值为 50 像素
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPosition = window.pageYOffset;
+            if (currentScrollPosition > lastScrollPosition) {
+                // 向下滑动，且滚动距离超过阈值时隐藏导航栏
+                if (currentScrollPosition > scrollThreshold) {
+                    nav.classList.add('hidden');
+                }
+            } else {
+                // 向上滑动或滚动距离未超过阈值时显示导航栏
+                nav.classList.remove('hidden');
+            }
+
+            lastScrollPosition = currentScrollPosition;
+        });
+    </script>
+
+    <!-- 汉堡菜单交互 -->
+    <script>
+        document.getElementById('navbarToggle').addEventListener('click', function () {
+            document.getElementById('navbarItems').classList.toggle('active');
+        });
+    </script>
+
+    <!-- 自动补全脚本 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchBar = document.getElementById("searchBar");
+            const autocompleteSuggestions = document.getElementById("autocompleteSuggestions");
+
+            searchBar.addEventListener("input", function () {
+                const query = searchBar.value;
+                if (query.length > 2) {
+                    fetch(`https://api.example.com/suggestions?q=${query}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            autocompleteSuggestions.innerHTML = data.suggestions.map(suggestion => `
+                                <div class="suggestion" onclick="searchBar.value = '${suggestion}'">
+                                    ${suggestion}
+                                </div>
+                            `).join('');
+                        });
+                } else {
+                    autocompleteSuggestions.innerHTML = '';
+                }
+            });
+
+            searchBar.addEventListener("keydown", function (event) {
+                if (event.key === "Enter") {
+                    const selectedSuggestion = autocompleteSuggestions.querySelector(".suggestion.selected");
+                    if (selectedSuggestion) {
+                        searchBar.value = selectedSuggestion.textContent;
+                        autocompleteSuggestions.innerHTML = '';
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.getElementById('navbarToggle').addEventListener('click', function () {
+            const navbarItems = document.getElementById('navbarItems');
+            const navbarToggle = document.getElementById('navbarToggle');
+            navbarItems.classList.toggle('expanded');
+            navbarToggle.classList.toggle('active');
+        });
+    </script>
+
+    <!-- 蛛网背景 -->
+    <script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <script>
+        !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1),
+                o: n(i, "opacity", .5),
+                c: n(i, "color", "0,0,0"),
+                n: n(i, "count", 99)
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+        } ();
+    </script>
+</body>
+
+</html>

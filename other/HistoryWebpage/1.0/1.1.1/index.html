@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>W---我是标签---W</title>
+    <meta
+      name="description"
+      content="陈哲威的个人网站。"
+    />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <style>
+      p {
+        margin-bottom: 16px;
+        overflow-wrap: break-word;
+      }
+
+      a {
+        color: #0055ff;
+        text-decoration: none;
+        border-bottom: 1px dashed;
+		
+      }
+
+      hr {
+        margin: 30px auto;
+      }
+    </style>
+    <style id="mp">
+      .mp {
+        display: none;
+      }
+    </style>
+	
+	
+	
+	
+  </head>
+
+  <body style="margin: 0">
+
+<script>
+function clickEffect() {
+  let balls = [];
+  let longPressed = false;
+  let longPress;
+  let multiplier = 0;
+  let width, height;
+  let origin;
+  let normal;
+  let ctx;
+  const colours = ["#ffffff", "#e1e1e1", "#d5d5d5", "#c3c3c3", "#d4d4d4"];
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
+  canvas.setAttribute("style", "width: 100%; height: 100%; top: 0; left: 0; z-index: 99999; position: fixed; pointer-events: none;");
+  const pointer = document.createElement("span");
+  pointer.classList.add("pointer");
+  document.body.appendChild(pointer);
+ 
+  if (canvas.getContext && window.addEventListener) {
+    ctx = canvas.getContext("2d");
+    updateSize();
+    window.addEventListener('resize', updateSize, false);
+    loop();
+    window.addEventListener("mousedown", function(e) {
+      pushBalls(randBetween(10, 20), e.clientX, e.clientY);
+      document.body.classList.add("is-pressed");
+      longPress = setTimeout(function(){
+        document.body.classList.add("is-longpress");
+        longPressed = true;
+      }, 500);
+    }, false);
+    window.addEventListener("mouseup", function(e) {
+      clearInterval(longPress);
+      if (longPressed == true) {
+        document.body.classList.remove("is-longpress");
+        pushBalls(randBetween(50 + Math.ceil(multiplier), 100 + Math.ceil(multiplier)), e.clientX, e.clientY);
+        longPressed = false;
+      }
+      document.body.classList.remove("is-pressed");
+    }, false);
+    window.addEventListener("mousemove", function(e) {
+      let x = e.clientX;
+      let y = e.clientY;
+      pointer.style.top = y + "px";
+      pointer.style.left = x + "px";
+    }, false);
+  } else {
+    console.log("canvas or addEventListener is unsupported!");
+  }
+ 
+ 
+  function updateSize() {
+    canvas.width = window.innerWidth * 2;
+    canvas.height = window.innerHeight * 2;
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.scale(2, 2);
+    width = (canvas.width = window.innerWidth);
+    height = (canvas.height = window.innerHeight);
+    origin = {
+      x: width / 2,
+      y: height / 2
+    };
+    normal = {
+      x: width / 2,
+      y: height / 2
+    };
+  }
+  class Ball {
+    constructor(x = origin.x, y = origin.y) {
+      this.x = x;
+      this.y = y;
+      this.angle = Math.PI * 2 * Math.random();
+      if (longPressed == true) {
+        this.multiplier = randBetween(14 + multiplier, 15 + multiplier);
+      } else {
+        this.multiplier = randBetween(6, 12);
+      }
+      this.vx = (this.multiplier + Math.random() * 0.5) * Math.cos(this.angle);
+      this.vy = (this.multiplier + Math.random() * 0.5) * Math.sin(this.angle);
+      this.r = randBetween(8, 12) + 3 * Math.random();
+      this.color = colours[Math.floor(Math.random() * colours.length)];
+    }
+    update() {
+      this.x += this.vx - normal.x;
+      this.y += this.vy - normal.y;
+      normal.x = -2 / window.innerWidth * Math.sin(this.angle);
+      normal.y = -2 / window.innerHeight * Math.cos(this.angle);
+      this.r -= 0.3;
+      this.vx *= 0.9;
+      this.vy *= 0.9;
+    }
+  }
+ 
+  function pushBalls(count = 1, x = origin.x, y = origin.y) {
+    for (let i = 0; i < count; i++) {
+      balls.push(new Ball(x, y));
+    }
+  }
+ 
+  function randBetween(min, max) {
+    return Math.floor(Math.random() * max) + min;
+  }
+ 
+  function loop() {
+    ctx.fillStyle = "rgba(255, 255, 255, 0)";
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = 0; i < balls.length; i++) {
+      let b = balls[i];
+      if (b.r < 0) continue;
+      ctx.fillStyle = b.color;
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2, false);
+      ctx.fill();
+      b.update();
+    }
+    if (longPressed == true) {
+      multiplier += 0.2;
+    } else if (!longPressed && multiplier >= 0) {
+      multiplier -= 0.4;
+    }
+    removeBall();
+    requestAnimationFrame(loop);
+  }
+ 
+  function removeBall() {
+    for (let i = 0; i < balls.length; i++) {
+      let b = balls[i];
+      if (b.x + b.r < 0 || b.x - b.r > width || b.y + b.r < 0 || b.y - b.r > height || b.r < 0) {
+        balls.splice(i, 1);
+      }
+    }
+  }
+}
+clickEffect();//调用特效函数
+</script>
+
+
+    <span class="js-cursor-container"></span>
+    <script>
+        (function fairyDustCursor() {
+ 
+            var possibleColors = ["#f3f3f3", "#8f8f8f", "#d9d9d9"]
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            var cursor = { x: width / 2, y: width / 2 };
+            var particles = [];
+ 
+            function init() {
+                bindEvents();
+                loop();
+            }
+ 
+           
+            function bindEvents() {
+                document.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('resize', onWindowResize);
+            }
+ 
+            function onWindowResize(e) {
+                width = window.innerWidth;
+                height = window.innerHeight;
+            }
+ 
+            function onMouseMove(e) {
+                cursor.x = e.clientX;
+                cursor.y = e.clientY;
+ 
+                addParticle(cursor.x, cursor.y, possibleColors[Math.floor(Math.random() * possibleColors.length)]);
+            }
+ 
+            function addParticle(x, y, color) {
+                var particle = new Particle();
+                particle.init(x, y, color);
+                particles.push(particle);
+            }
+ 
+            function updateParticles() {
+ 
+                
+                for (var i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+ 
+               
+                for (var i = particles.length - 1; i >= 0; i--) {
+                    if (particles[i].lifeSpan < 0) {
+                        particles[i].die();
+                        particles.splice(i, 1);
+                    }
+                }
+ 
+            }
+ 
+            function loop() {
+                requestAnimationFrame(loop);
+                updateParticles();
+            }
+ 
+          
+ 
+            function Particle() {
+ 
+                this.character = "*";
+                this.lifeSpan = 120; //ms
+                this.initialStyles = {
+                    "position": "fixed",
+                    "display": "inline-block",
+                    "top": "0px",
+                    "left": "0px",
+                    "pointerEvents": "none",
+                    "touch-action": "none",
+                    "z-index": "10000000",
+                    "fontSize": "25px",
+                    "will-change": "transform"
+                };
+ 
+              
+                this.init = function (x, y, color) {
+ 
+                    this.velocity = {
+                        x: (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+                        y: 1
+                    };
+ 
+                    this.position = { x: x + 10, y: y + 10 };
+                    this.initialStyles.color = color;
+ 
+                    this.element = document.createElement('span');
+                    this.element.innerHTML = this.character;
+                    applyProperties(this.element, this.initialStyles);
+                    this.update();
+ 
+                    document.querySelector('.js-cursor-container').appendChild(this.element);
+                };
+ 
+                this.update = function () {
+                    this.position.x += this.velocity.x;
+                    this.position.y += this.velocity.y;
+                    this.lifeSpan--;
+ 
+                    this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px, 0) scale(" + (this.lifeSpan / 120) + ")";
+                }
+ 
+                this.die = function () {
+                    this.element.parentNode.removeChild(this.element);
+                }
+ 
+            }
+ 
+           
+            function applyProperties(target, properties) {
+                for (var key in properties) {
+                    target.style[key] = properties[key];
+                }
+            }
+ 
+            if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) init();
+        })();    
+    </script>
+
+
+
+    <div style="background-color: #f1f1f1; text-align: center; padding: 40px">
+          <h1 align="center"><b>------W------</b></h1>
+          <h3>welcome to my web!!!</h3>
+		      <div class="box"></div>
+		      <script>
+		          function getTime() {
+		              var date = new Date();
+		              var year = date.getFullYear(); //获取年份
+		              var month = date.getMonth() + 1; //获取月份
+		              var day = date.getDate(); //获取日期
+		              var hour = date.getHours(); //获取小时
+		              hour = hour < 10 ? '0' + hour : hour;
+		              var minute = date.getMinutes(); // 获取分
+		              minute = minute < 10 ? '0' + minute : minute;
+		              var seconds = date.getSeconds(); //获取秒
+		              seconds = seconds < 10 ? '0' + seconds : seconds;
+		              return year + '年' + month + '月' + day + '日&nbsp;' + hour + ':' + minute + ':' + seconds;
+		          }
+		   
+		          setInterval(function() {
+		              document.querySelector('.box').innerHTML = getTime();
+		          }, 1000)
+		      </script>
+		  
+
+    </div>
+
+    <article
+      style="
+        max-width: 760px;
+        margin: 30px auto;
+        padding: 15px;
+        color: rgb(36, 41, 46);
+        font-size: 17px;
+        line-height: 1.7;
+        text-size-adjust: 100%;
+      "
+    >
+
+
+      <p>嗨~欢迎来到<b>陈哲威</b>的个人网站!</p>
+      <p>这是一个学习练习用的网站。</p>
+      <p>由于<b>资金不足</b>，网站的网址会不定期更换一遍。</p>
+      <p>这导致了网站不能被更多人看到，但我每天都会在社交应用上分享最新网址。</p>
+      <p>
+        我也不清楚我做这个网站的目的，谁便做来玩的。(网站以娱乐为主)
+      </p>
+      <p>该项目部分来自于网络请勿直接用于商业等用途，本项目<b>仅供娱乐</b>。</p>
+      <hr />
+	  <p>网站目前已在<b><a style="color: #000000;"
+          href="https://github.com/"target="_blank">Github</a></b>开源，可以进入我的
+		  <a href="https://github.com/chzhwe"target="_blank">Github主页</a>查找。</p>
+      <p>
+	  <p>想看又嫌麻烦的可以按键盘上的[<b>F12</b>]键简略看一下<b>源代码</b>。</p>
+        这是我的<a
+          href="https://space.bilibili.com/1831160594?spm_id_from=333.1007.0.0"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          bilibili主页
+          <span class="mp">(程序内无法打开，请用浏览器打开)</span></a
+        >，可以私信我获取最新网址。
+      </p>
+      <p>
+        感兴趣的可以添加我的<b>STEAM</b>好友：<a
+
+      <p>
+        好友代码:<a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://steamcommunity.com/profiles/76561199308126706/"
+          >1347860978</a
+        >，这可能需要打开加速器。<span class="mp"
+          >(程序内无法打开，请用浏览器打开)</span
+        >
+      </p>
+      <p>
+       网站有时会显示不安全，因为我没有认证，但是<b>网站绝对不会有病毒</b>。
+      </p>
+	  <hr />
+	  <h3>推荐网站:<a href="https://ikun.ee/"target="_blank">鸡乐盒 Plus</a></h3>
+	  <h3>自制子网页:<a href="./AIDAO/AIDAO.html">哀悼网页</a></h3>
+      <hr />
+      <h1><b>网址分享</b>:</h1>
+      <p><b>（点击即可打开）</b></p>
+      <h1 align="center"><a href="https://www.mihoyo.com/ "target="_blank"
+      >1.米哈游官网</a></h1>
+      <h1 align="center"><a href="https://huang14hb.gitee.io/hw2/"target="_blank"
+      >2.蔡只因游戏盒</a></h1>
+      <h1 align="center"><a href="https://classic.minecraft.net/ "target="_blank"
+      >3.我的世界在线游玩</a></h1>
+      <h1 align="center"><a href="https://geekprank.com/hacker/ "target="_blank"
+      >4.黑客装13模拟器</a></h1>
+      <h1 align="center"><a href="https://www.freeok.vip/ "target="_blank"
+      >5.电视电影在线观看</a></h1>
+      <h1 align="center"><a href="http://www.1010jiajiao.com/ "target="_blank"
+      >6.练习试卷答案查找</a></h1>
+      <h1 align="center"><a href="https://tonzhon.com/ "target="_blank"
+      >7.免费听歌下载歌曲</a></h1>
+      <h1 align="center"><a href="https://cybermap.kaspersky.com/ "target="_blank"
+      >8.世界网络攻击实况</a></h1>
+      <h1 align="center"><a href="https://fakeupdate.net/ "target="_blank"
+      >9.蓝屏界面模拟网站</a></h1>
+      <h1 align="center"><a href="https://www.4399.com/ "target="_blank"
+      >10.4399游戏网站</a></h1>
+      <h1 align="center"><a href="https://poki.cn/ "target="_blank"
+      >11.国外游戏网站</a></h1>
+      <h1 align="center"><a href="https://www.toolfk.com/ "target="_blank"
+      >12.Toolfk工具网站</a></h1>
+      <h1 align="center"><a href="https://www.kuaishou.com/ "target="_blank"
+      >13.快手短视频平台</a></h1>
+      <h1 align="center"><a href="https://www.douyin.com/ "target="_blank"
+      >14.抖音短视频平台</a></h1>
+      <h1 align="center"><a href="https://www.bilibili.com/ "target="_blank"
+      >15.哔哩哔哩</a></h1>
+      <h1 align="center"><a href="https://tool.lu/ip/ "target="_blank"
+      >16.IP查询网站</a></h1>
+      <h1 align="center"><a href="https://tools.bqrdh.com/rubiks-cube/ "target="_blank"
+      >17.在线拼魔方</a></h1>
+      <h1 align="center"><a href="https://www.yikm.net/ "target="_blank"
+      >18.90年代游戏大全</a></h1>
+      <h1 align="center"><a href="https://cznull.github.io/vsbm "target="_blank"
+      >19.设备性能测试网站</a></h1>
+      <h1 align="center"><a href="http://www.gditu.net/ "target="_blank"
+      >20.谷歌卫星地图</a></h1>
+      
+
+
+      
+      <h1 align="center"><a href="https://www.bilibili.com/video/BV1Kj411d7nt/?spm_id_from=333.337.search-card.all.click&vd_source=f96b2ffe6c1d46fd88bfaff700e80087"target="_blank"style="color: #FFFFFF"
+      >原神，启动！原神，启动！原神，启动！原神，启动！</a></h1>
+      <hr />
+
+
+    </article>
+    <footer
+      style="
+        margin-top: 60px;
+        background-color: #f1f1f1;
+        text-align: center;
+        padding: 40px;
+        font-size: 12px;
+      "
+    >
+      <div>
+        <a
+          style="margin: 10px"
+          href="https://www.runoob.com/  "target="_blank"
+          rel="noopener noreferrer"
+          >编程教学网站</a
+        >
+        <a
+          style="margin: 10px"
+          href="https://tool.lu/coderunner/ "target="_blank"
+          rel="noopener noreferrer"
+          >在线编程工具</a
+        >
+        <a
+          style="margin: 10px"
+          href="https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web "target="_blank"
+          rel="noopener noreferrer"
+          >Web 入门-学习</a
+        >
+        <a
+          style="margin: 10px"
+          href="https://www.w3schools.cn/tryit/tryit.asp?filename=tryhtml_default "target="_blank"
+          rel="noopener noreferrer"
+          >在线HTML编辑器</a
+        >
+        <a
+          style="margin: 10px"
+          href="https://blog.csdn.net/qq_42889406/article/details/107985727"
+          target="_blank"
+          rel="noopener noreferrer"
+          >HTML思维导图</a
+        >
+        <span
+        class="mp" style="color: #666">
+          (程序内无法打开，请用浏览器打开)
+        </span>
+<h2><a 
+          style="margin: 10px;color: #00aa96"
+          href="./WXSK/WXSK.html"
+          >（捐赠作者和网站）</a
+        ></h2>
+		<p>请勿用于商业用途,本项目仅供娱乐!!!</p>
+<p>        <a 
+          style="color: #f1f1f1;float:right"
+          href="./Easter egg/Easter egg.html"
+          >Easter egg</a
+        ></p>
+
+
+</body>
+
+
+</html>

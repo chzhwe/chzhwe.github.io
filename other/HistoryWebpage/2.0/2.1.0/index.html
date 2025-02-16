@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 基本元数据 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="陈哲威的个人网站。" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>Czwiki导航网</title>
+
+    <!-- 标签页图标 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+
+    <!-- 样式表 -->
+    <style>
+		
+		.search-container {
+		  max-width: 800px;
+		  margin: 40px auto;
+		  padding: 20px;
+		  background-color: white;
+		  border-radius: 12px;
+		  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		  text-align: center; /* 居中显示欢迎信息 */
+		}
+		
+		.search-container p {
+		  margin: 10px 0;
+		  color: #333;
+		  font-size: 16px;
+		  font-weight: bold;
+		}
+		
+		.search-container .search-bar {
+		  width: calc(100% - 24px);
+		  padding: 12px;
+		  font-size: 16px;
+		  border: 2px solid #e0e0e0;
+		  border-radius: 8px;
+		  margin: 10px 0;
+		  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+		}
+		
+		/* 导航栏样式 */
+		.navbar {
+		  background: linear-gradient(135deg, #64b5f6, #1e88e5);
+		  padding: 5px 0;
+		  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+		  position: fixed; /* 导航栏固定在顶部 */
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  z-index: 1000; /* 确保导航栏在最上层 */
+		  transition: transform 0.3s ease; /* 添加过渡效果 */
+		}
+
+		/* 隐藏导航栏时的样式 */
+		.navbar.hidden {
+		  transform: translateY(-100%); /* 导航栏向上移动隐藏 */
+		}
+		
+		.navbar-container {
+		  max-width: 1200px;
+		  margin: 0 auto;
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: center;
+		  padding: 0 20px;
+		}
+		
+		.navbar-logo {
+		  font-size: 1.5em;
+		  color: white;
+		  text-decoration: none;
+		  font-weight: bold;
+		}
+		
+		.navbar-items {
+		  display: flex;
+		  list-style: none;
+		}
+		
+		.navbar-item {
+		  color: white;
+		  text-decoration: none;
+		  margin: 0 15px;
+		  font-size: 1em;
+		  transition: color 0.3s ease;
+		}
+		
+		.navbar-item:hover {
+		  color: #ffffffdd;
+		}
+		
+        /* 隐藏滚动条 */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-y: scroll;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        /* 隐藏滚动条外观 */
+        body::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        /* 全局样式 */
+        body {
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #d1e8ff);
+            color: #444;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #2196f3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #0d47a1;
+        }
+
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-top: 60px; /* 避免内容被导航栏遮挡 */
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .header h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        .header .time {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* 搜索框容器 */
+        .search-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 搜索输入框 */
+        .search-bar {
+            width: calc(100% - 24px);
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar:focus {
+            border-color: #64b5f6;
+            box-shadow: 0 0 8px rgba(100, 181, 254, 0.3);
+            outline: none;
+        }
+
+        /* 搜索引擎选择框 */
+        .search-engine-select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: white;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-engine-select:focus {
+            border-color: #64b5f6;
+            box-shadow: 0 0 8px rgba(100, 181, 254, 0.3);
+            outline: none;
+        }
+
+        /* 搜索按钮 */
+        .search-button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-button:hover {
+            background: linear-gradient(135deg, #1e88e5, #64b5f6);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-button:active {
+            transform: translateY(1px);
+        }
+
+        /* 内容区域 */
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 展开列表样式 */
+        details {
+            margin: 20px 0;
+            border: 1px solid rgba(100, 181, 254, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        details summary {
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            background: linear-gradient(135deg, #f5f7fa, #e6e9ef);
+            border-radius: 8px;
+            border-bottom: 1px solid rgba(100, 181, 254, 0.2);
+            outline: none;
+            transition: background 0.3s ease;
+        }
+
+        details summary:hover {
+            background: linear-gradient(135deg, #e6e9ef, #f5f7fa);
+        }
+
+        details[open] summary {
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+        }
+
+        details ol {
+            padding-left: 20px;
+            margin-top: 10px;
+            background-color: white;
+            border-top: 1px solid rgba(100, 181, 254, 0.2);
+            border-bottom: 1px solid rgba(100, 181, 254, 0.2);
+            border-radius: 0 0 8px 8px;
+        }
+
+        details ol li {
+            margin: 10px 0;
+            padding: 5px;
+            border-bottom: 1px dashed rgba(100, 181, 254, 0.2);
+        }
+
+        /* 底部样式 */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+            color: white;
+            margin-top: 40px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .footer a {
+            color: white;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 访问次数和运行时间 */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .stats span {
+            background: linear-gradient(135deg, #e3f2fd, #d1e8ff);
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #2196f3;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 次级模块样式 */
+        .module {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(100, 181, 254, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(100, 181, 254, 0.1);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .search-container {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .search-bar {
+                width: calc(100% - 24px);
+            }
+
+            .search-engine-select {
+                width: 100%;
+            }
+
+            .search-button {
+                width: 100%;
+            }
+
+            .content {
+                margin: 20px;
+                padding: 15px;
+            }
+
+            .footer {
+                padding: 15px;
+            }
+
+            .module {
+                margin: 15px 0;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="nav">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-logo">主页</a>
+            <ul class="navbar-items">
+                <li><a href="#about" class="navbar-item">关于</a></li>
+                <li><a href="#works" class="navbar-item"></a></li>
+                <li><a href="#contact" class="navbar-item"></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 头部 -->
+    <div class="header">
+        <h1>Czwiki导航网</h1>
+        <h3>欢迎来到 CZwiki 导航网，这里为您提供便捷的网络入口。</h3>
+        <div class="time" id="currentTime"></div>
+    </div>
+
+    <!-- 搜索栏 -->
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchBar" placeholder="输入想要搜索的内容">
+        <select class="search-engine-select" id="searchEngine">
+            <option value="https://www.bing.com/search?q=">微软Bing</option>
+            <option value="https://www.baidu.com/s?wd=">百度Baidu</option>
+            <option value="https://www.sogou.com/web?query=">搜狗Sogou</option>
+            <option value="https://so.toutiao.com/search?keyword=">头条Toutiao</option>
+            <option value="https://yz.m.sm.cn/s?from=wm827671&q=">神马SM</option>
+            <option value="https://m.so.com/s?q=">好搜360</option>
+            <option value="https://duckduckgo.com/?q=">Duckduckgo</option>
+        </select>
+        <button class="search-button" onclick="search()">搜索</button>
+    </div>
+
+    <!-- 内容 -->
+    <div class="content">
+        <p>嗨~欢迎来到<b>Czwiki</b>导航网!</p>
+        <!-- 获取IP -->
+        <p>您的IP地址是: <span id="ip"></span></p>
+        <script>
+            fetch('https://api.ipify.org/?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('ip').textContent = data.ip;
+                })
+                .catch(error => console.error(error));
+        </script>
+        <!-- 展开列表 -->
+        <details>
+            <summary><b>（点击展开查看网址情况）</b></summary>
+            <ol>
+                <li><b>永久地址：</b> <a href="https://chzhwe.github.io/">https://chzhwe.github.io/</a></li>
+                <li><b>主要地址：</b> <a href="https://czwiki.github.io/">https://czwiki.github.io/</a></li>
+            </ol>
+        </details>
+        <p>该项目未被允许请勿直接用于商业等用途，本项目<b>仅供娱乐</b>。</p>
+        <hr />
+        <div class="module">
+            <p>网站目前已在 <a style="color: #2196f3;" href="https://github.com/" target="_blank">Github</a> 开源，可以进入我的
+                <a href="https://github.com/chzhwe" target="_blank">Github主页</a> 查找源码。
+            </p>
+            <p>想看又嫌麻烦的可以按键盘上的 [<b>F12</b>] 键简略看一下 <b>源代码</b>。</p>
+        </div>
+        <div class="module" style="margin-top: 20px;">
+            <p>这是我的 <a href="https://space.bilibili.com/1831160594?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">
+                    bilibili主页
+                    <span class="mp">(程序内无法打开，请用浏览器打开)</span>
+                </a>，可私信反应网页问题。</p>
+            <p>感兴趣的可以添加我的 <b>STEAM</b>好友：<a target="_blank" rel="noopener noreferrer" href="https://steamcommunity.com/profiles/76561199308126706/">好友代码:1347860978</a>，过程中可能需要打开加速器。<span class="mp"></span></p>
+            <p>网站绝对安全，谢绝一切 <b>网页病毒</b>。</p>
+            <p>网站从始至终都在坚持更新，<b>想浏览之前的网站长什么样子</b>？点击查看: <a href="./W/Web hosting/Web hosting.html">[网站历史样式]</a></p>
+        </div>
+        <hr />
+        <h3>其他项目:
+            <a style="margin:20px" href="./W/qqchabang/在线查Q绑.html">minecraft服务器</a>
+            <a style="margin:20px" href="./W/Project/Project.html">ZweiAi</a>
+        </h3>
+        <hr />
+        <h1><b>精选网址分享</b>:</h1>
+        <details>
+            <summary><b>（点击展开或关闭列表）</b></summary>
+            <ol>
+                <li><a href="https://classic.minecraft.net/" target="_blank" style="color: #2196f3;;font-size=20px">我的世界在线游玩</a></li>
+            </ol>
+        </details>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer">
+        <!-- 访问数量和运行时间 -->
+        <div class="stats">
+            <span class="visits" id="visits"></span>
+            <span class="runtime" id="runtime"></span>
+        </div>
+
+        <!-- 访问数量脚本 -->
+        <script>
+            var caution = false;
+
+            function setCookie(name, value, expires) {
+                var expiresString = expires ? `; expires=${expires.toUTCString()}` : "";
+                document.cookie = `${name}=${encodeURIComponent(value)}; path=/; sameSite=Lax${expiresString}`;
+            }
+
+            function getCookie(name) {
+                const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+                return match ? decodeURIComponent(match[2]) : null;
+            }
+
+            function updateVisits() {
+                const visits = getCookie("visits");
+                const count = visits ? parseInt(visits) + 1 : 1;
+                const expires = new Date(Date.now() + 365 * 86400000); // 1 year
+                setCookie("visits", count, expires);
+                document.getElementById("visits").textContent = `访问次数: ${count}`;
+            }
+
+            window.addEventListener("load", updateVisits);
+        </script>
+
+        <!-- 运行时间脚本 -->
+        <script>
+            function updateRuntime() {
+                const startDate = new Date("2024-02-15T00:00:00Z");
+                const now = new Date();
+                const runtime = now - startDate;
+
+                const days = Math.floor(runtime / (86400000));
+                const hours = Math.floor((runtime % 86400000) / 3600000);
+                const minutes = Math.floor((runtime % 3600000) / 60000);
+                const seconds = Math.floor((runtime % 60000) / 1000);
+
+                document.getElementById("runtime").textContent = `运行时间: ${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+            }
+
+            setInterval(updateRuntime, 1000);
+            window.addEventListener("load", updateRuntime);
+        </script>
+
+        <p>未经允许请勿用于商业用途,本项目仅供娱乐!</p>
+        <h3><b>©2023 Czwiki 无公安网备案</b></h3>
+    </div>
+
+    <!-- 时间显示脚本 -->
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById("currentTime").textContent = `${year}年${month}月${day}日 ${hours}:${minutes}:${seconds}`;
+        }
+
+        setInterval(updateTime, 1000);
+        window.addEventListener("load", updateTime);
+    </script>
+
+    <!-- 导航栏显示和隐藏脚本 -->
+<script>
+    let lastScrollPosition = 0;
+    const nav = document.getElementById('nav');
+    const scrollThreshold = 50; // 设置滚动阈值为 100 像素
+
+    window.addEventListener('scroll', () => {
+        const currentScrollPosition = window.pageYOffset;
+        if (currentScrollPosition > lastScrollPosition) {
+            // 向下滑动，且滚动距离超过阈值时隐藏导航栏
+            if (currentScrollPosition > scrollThreshold) {
+                nav.classList.add('hidden');
+            }
+        } else {
+            // 向上滑动或滚动距离未超过阈值时显示导航栏
+            nav.classList.remove('hidden');
+        }
+
+        lastScrollPosition = currentScrollPosition;
+    });
+</script>
+</body>
+
+</html>
