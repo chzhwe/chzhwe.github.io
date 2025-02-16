@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>索尼像馆</title>
+		 <script>
+		//禁用右键（防止右键查看源代码） 
+		    window.oncontextmenu = function () { return false; }
+		 //禁止任何键盘敲击事件（防止F12和shift+ctrl+i调起开发者工具） 
+		    window.onkeydown = window.onkeyup = window.onkeypress = function () {
+		      window.event.returnValue = false;
+		 return false;
+		    }
+		</script>
+        <style>
+    span {
+        background: linear-gradient(to right, red, blue);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+            .test{
+                float: left;
+                width: 25%;
+                box-sizing: border-box;
+                padding: 10px;
+                min-width: 150px;
+            }
+
+            .container{
+                width: 100%;
+            }
+
+            @media (max-width:615px ) {
+                .test{
+                    float: left;
+                    width: 33%;
+                    box-sizing: border-box;
+                    padding: 10px;
+                    min-width: 150px;
+                }
+            }
+
+            @media (max-width:465px ) {
+                .test{
+                    float: left;
+                    width: 50%;
+                    box-sizing: border-box;
+                    padding: 10px;
+                    min-width: 150px;
+                }
+            }
+
+            @media (max-width:315px ) {
+                .test{
+                    float: left;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 10px;
+
+                }
+            }
+
+        </style>
+    </head>
+    <body style="background-color: #ffffff">
+
+        <div class="container">
+            <div class="test" >
+                <img src="./XRH.jpg" style="max-width: 100%;"/>
+				<span>291,608,000.00RMB</span>
+            </div>
+            <div class="test" >
+                <img src="./YWLTKFZ.jpg" style="max-width: 100%;"/>
+				<span>无价之宝</span>
+            </div>
+            <div class="test" >
+                <img src="./MLLS.jpg" style="max-width: 100%;"/>
+				<span>无价之宝</span>
+            </div>
+            <div class="test" >
+                <img src="./XK.jpg" style="max-width: 100%;"/>
+				<span>3,783,613,800.00RMB</span>
+            </div>
+        </div>
+
+    </body>
+</html>
