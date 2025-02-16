@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CZwiki导航网</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f6fa;
+            color: #333;
+            text-align: center;
+        }
+
+        /* 标题样式 */
+        .header {
+            background-color: #1e88e5;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 2.2rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 搜索容器样式 */
+        .search-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        /* 搜索框样式 */
+        .search-bar {
+            width: calc(100% - 120px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            margin-right: 10px;
+        }
+
+        .search-bar:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        /* 搜索引擎选择样式 */
+        .search-engine-select {
+            width: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            text-align: center;
+        }
+
+        /* 搜索按钮样式 */
+        .search-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 响应式设计 */
+        @media screen and (max-width: 768px) {
+            .search-container {
+                max-width: 90%;
+                margin-top: 20px;
+            }
+
+            .search-bar,
+            .search-engine-select {
+                margin: 10px 0;
+            }
+
+            .search-engine-select {
+                width: calc(100% - 120px);
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>CZwiki导航网</h1>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-bar" id="searchBar" placeholder="输入想要搜索的内容">
+        <select class="search-engine-select" id="searchEngine">
+            <option value="https://www.bing.com/search?q=">微软Bing</option>
+            <option value="https://www.baidu.com/s?wd=">百度Baidu</option>
+            <option value="https://www.sogou.com/web?query=">搜狗Sogou</option>
+            <option value="https://so.toutiao.com/search?keyword=">头条Toutiao</option>
+            <option value="https://yz.m.sm.cn/s?from=wm827671&q=">神马SM</option>
+            <option value="https://m.so.com/s?q=">好搜360</option>
+            <option value="https://duckduckgo.com/?q=">Duckduckgo</option>
+        </select>
+        <button class="search-button" onclick="search()">搜索</button>
+    </div>
+
+    <script>
+        function search() {
+            const query = document.getElementById('searchBar').value.trim();
+            if (query === '') return;
+            const engine = document.getElementById('searchEngine').value;
+            window.open(engine + encodeURIComponent(query), '_blank');
+        }
+
+        document.getElementById('searchBar').addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                search();
+            }
+        });
+    </script>
+</body>
+
+</html>

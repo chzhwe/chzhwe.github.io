@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Czwiki导航网</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #111;
+        }
+        nav a.active {
+            background-color: #0056b3;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+        }
+        .search-container {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .search-container input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Czwiki导航网</h1>
+    </header>
+    <nav>
+        <a href="https://chzhwe.github.io" class="active">主页</a>
+        <a href="index.html">关于</a>
+        <a href="./W/donation/WXSK.html">赞助</a>
+        <a href="https://kiku.page/4FPAAcsW">意见反馈</a>
+    </nav>
+    <div class="container">
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="输入想要搜索的内容">
+            <select id="searchEngine">
+                <option value="https://www.bing.com/search?q=">微软Bing</option>
+                <option value="https://www.baidu.com/s?wd=">百度Baidu</option>
+                <option value="https://www.sogou.com/web?query=">搜狗Sogou</option>
+                <option value="https://so.toutiao.com/search?keyword=">头条Toutiao</option>
+                <option value="https://yz.m.sm.cn/s?from=wm827671&q=">神马SM</option>
+                <option value="https://m.so.com/s?q=">好搜360</option>
+                <option value="https://duckduckgo.com/?q=">Duckduckgo</option>
+            </select>
+            <button onclick="search()">搜索</button>
+        </div>
+        <div class="content">
+            <p>嗨~欢迎来到<b>Czwiki</b>导航网!</p>
+            <p>您的IP地址是: <span id="ip"></span></p>
+            <script>
+                fetch('https://api.ipify.org/?format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('ip').textContent = data.ip;
+                    })
+                    .catch(error => console.error(error));
+            </script>
+            <details>
+                <summary><b>（点击展开查看网址情况）</b></summary>
+                <ol>
+                    <p>网站<b>永久地址：</b></p>
+                    <p><a href="https://chzhwe.github.io/">https://chzhwe.github.io/</a></p>
+                    <p>网站<b>主要地址：</b></p>
+                    <p><a href="https://czwiki.github.io/">https://czwiki.github.io/</a></p>
+                </ol>
+            </details>
+            <p>该项目未被允许请勿直接用于商业等用途，本项目<b>仅供娱乐</b>。</p>
+            <hr>
+            <p>网站目前已在<b><a href="https://github.com/" target="_blank">Github</a></b>开源，可以进入我的
+                <a href="https://github.com/chzhwe" target="_blank">Github主页</a>查找<b>源码</b>。</p>
+            <p>想看又嫌麻烦的可以按键盘上的[<b>F12</b>]键简略看一下<b>源代码</b>。</p>
+            <p>这是我的<a href="https://space.bilibili.com/1831160594?spm_id_from=333.1007.0.0"
+                target="_blank" rel="noopener noreferrer">
+                bilibili主页
+                <span class="mp">(程序内无法打开，请用浏览器打开)</span></a
+                >，可私信反应网页问题。
+            </p>
+            <p>
+                感兴趣的可以添加我的<b>STEAM</b>好友：<a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://steamcommunity.com/profiles/76561199308126706/"
+                >好友代码:1347860978</a
+                >，这可能需要打开加速器。<span class="mp"
+                >(程序内无法打开，请用浏览器打开)</span
+                >
+            </p>
+            <p>
+                网站绝对安全，谢绝一切<b>网页病毒</b>。
+            </p>
+            <p>想让我<b>帮忙做网站和托管</b>？点击查看:<a href="./W/Web hosting/Web hosting.html">[网站托管]</a></p>
+            <hr>
+            <h3>其他项目:<a style="margin:20px" href="./W/qqchabang/在线查Q绑.html">Q绑查询系统</a>
+                <a style="margin:20px" href="./W/Project/Project.html">ZweiAi</a>
+            </h3>
+            <hr>
+            <h1><b>精选网址分享</b>:</h1>
+            <details>
+                <summary><b>（点击展开或关闭列表）</b></summary>
+                <ol>
+                    <h1 align="center"><a href="https://ikun.ee/" target="_blank" style="color: #0055ff; font-size:20px">
+                        鸡乐盒 Plus</a></h1>
+                    <h1 align="center"><a href="https://www.mihoyo.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        米哈游官网</a></h1>
+                    <h1 align="center"><a href="https://huang14hb.gitee.io/hw2/" target="_blank" style="color: #0055ff; font-size:20px">
+                        蔡只因游戏盒</a></h1>
+                    <h1 align="center"><a href="https://classic.minecraft.net/" target="_blank" style="color: #0055ff; font-size:20px">
+                        我的世界在线游玩</a></h1>
+                    <h1 align="center"><a href="https://geekprank.com/hacker/" target="_blank" style="color: #0055ff; font-size:20px">
+                        黑客装13模拟器</a></h1>
+                    <h1 align="center"><a href="https://www.freeok.vip/" target="_blank" style="color: #0055ff; font-size:20px">
+                        电视电影在线观看</a></h1>
+                    <h1 align="center"><a href="http://www.1010jiajiao.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        练习试卷答案查找</a></h1>
+                    <h1 align="center"><a href="https://tonzhon.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        免费听歌下载歌曲</a></h1>
+                    <h1 align="center"><a href="https://cybermap.kaspersky.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        世界网络攻击实况</a></h1>
+                    <h1 align="center"><a href="https://fakeupdate.net/" target="_blank" style="color: #0055ff; font-size:20px">
+                        蓝屏界面模拟网站</a></h1>
+                    <h1 align="center"><a href="https://www.4399.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        4399游戏网站</a></h1>
+                    <h1 align="center"><a href="https://poki.cn/" target="_blank" style="color: #0055ff; font-size:20px">
+                        国外游戏网站</a></h1>
+                    <h1 align="center"><a href="https://www.toolfk.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        Toolfk工具网站</a></h1>
+                    <h1 align="center"><a href="https://www.kuaishou.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        快手短视频平台</a></h1>
+                    <h1 align="center"><a href="https://www.douyin.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        抖音短视频平台</a></h1>
+                    <h1 align="center"><a href="https://www.bilibili.com/" target="_blank" style="color: #0055ff; font-size:20px">
+                        哔哩哔哩BiliBili</a></h1>
+                    <h1 align="center"><a href="https://tool.lu/ip/" target="_blank" style="color: #0055ff; font-size:20px">
+                        IP查询网站</a></h1>
+                    <h1 align="center"><a href="https://tools.bqrdh.com/rubiks-cube/" target="_blank" style="color: #0055ff; font-size:20px">
+                        在线拼魔方</a></h1>
+                    <h1 align="center"><a href="https://www.yikm.net/" target="_blank" style="color: #0055ff; font-size:20px">
+                        90年代游戏大全</a></h1>
+                    <h1 align="center"><a href="https://cznull.github.io/vsbm" target="_blank" style="color: #0055ff; font-size:20px">
+                        设备性能测试网站</a></h1>
+                    <h1 align="center"><a href="http://www.gditu.net/" target="_blank" style="color: #0055ff; font-size:20px">
+                        谷歌卫星地图</a></h1>
+                </ol>
+            </details>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Czwiki. 无公安网备案.</p>
+    </footer>
+    <script>
+        function search() {
+            const searchBar = document.getElementById('searchBar');
+            const searchEngine = document.getElementById('searchEngine');
+            const searchTerm = searchBar.value.trim();
+            const engineUrl = searchEngine.value;
+            if (searchTerm !== "") {
+                window.open(`${engineUrl}${encodeURIComponent(searchTerm)}`, '_blank');
+            } else {
+                alert('请输入关键词再点击搜索！');
+            }
+        }
+    </script>
+</body>
+</html>
