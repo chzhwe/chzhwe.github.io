@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赞助网站</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #e0f7fa, #b2ebf2, #80deea, #4dd0e1);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+            position: relative;
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            margin: 0;
+            color: #004d40;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+            font-size: 28px;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center fixed;
+            background-size: cover;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sponsors {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 1200px;
+        }
+
+        .sponsor-card {
+            background: linear-gradient(135deg, #e0ffff, #fff3e0);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            border: 2px solid #00897b;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+            border-color: #00544b;
+        }
+
+        .sponsor-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .sponsor-img:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .sponsor-btn {
+            background: linear-gradient(135deg, #4db6ac, #009688);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .sponsor-btn:hover {
+            background: linear-gradient(135deg, #00897b, #00695c);
+            transform: translateY(-1px);
+        }
+
+        footer {
+            background: #263238;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p::before {
+            content: "©2025️";
+            margin-right: 5px;
+        }
+
+        /* 返回按钮样式 */
+        .back-button {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            background: #00897b;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            will-change: opacity, transform;
+        }
+
+        .back-button.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sponsors {
+                grid-template-columns: 1fr;
+            }
+
+            .sponsor-card {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💲赞助本网站💱</h1>
+    </header>
+
+    <main>
+        <div class="sponsors">
+
+            <div class="sponsor-card">
+                <img class="sponsor-img" src="./weixinzanshang.jpg" alt="微信赞助二维码">
+                <button class="sponsor-btn">打开微信扫描次二维码☝️☝️</button><h2>没有微信⁉️滑动到最下方⤴️⤴️</h2>
+            </div>
+			<div class="sponsor-card">
+			    <img class="sponsor-img" src="./weixin.jpg" alt="微信二维码">
+			    <button class="sponsor-btn">打开微信扫描次二维码☝️☝️</button><h2>没有微信⁉️滑动到下方⤴️⤴️</h2>
+			</div>
+            <div class="sponsor-card">
+                <img class="sponsor-img" src="./zhifubao.jpg" alt="️支付宝二维码">
+                <button class="sponsor-btn">打开支付宝扫描次二维码☝️☝️</button><h2>没有支付宝⁉️滑动到上方⤴️⤴️️</h2>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>👆上滑扫码👆</p>
+    </footer>
+
+    <button class="back-button" onclick="goBack()">&#8592; 返回上一个页面</button>
+
+    <script>
+        let scrollTimeout;
+        const backButton = document.querySelector('.back-button');
+
+        // 监听滚动事件
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            backButton.classList.remove('visible');
+            scrollTimeout = setTimeout(() => {
+                backButton.classList.add('visible');
+            }, 3000);
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

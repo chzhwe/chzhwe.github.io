@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -11,81 +10,72 @@
     <meta name="author" content="陈哲威" />
     <meta name="copyright" content="©2023 Czwiki" />
     <title>CZwiki导航网</title>
-
-    <!-- 标签页图标 -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
-    <link rel="manifest" href="./site.webmanifest">
-
-    <!-- 样式表 -->
     <style>
-		
-/* 高级超链接样式 */
-.advanced-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1e88e5, #64b5f6);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    margin-top: 20px;
-}
+        /* 高级超链接样式 */
+        .advanced-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e88e5, #64b5f6);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            margin-top: 20px;
+        }
 
-.advanced-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #64b5f6, #1e88e5);
-}
+        .advanced-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #64b5f6, #1e88e5);
+        }
 
-.advanced-link:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
+        .advanced-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
 
-.link-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .link-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.link-text {
-    font-size: 16px;
-    font-weight: bold;
-}
+        .link-text {
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-.link-arrow {
-    font-size: 18px;
-    transition: transform 0.2s ease;
-}
+        .link-arrow {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
 
-.advanced-link:hover .link-arrow {
-    transform: translateX(2px);
-}
+        .advanced-link:hover .link-arrow {
+            transform: translateX(2px);
+        }
 
-/* 响应式设计 */
-@media (max-width: 600px) {
-    .advanced-link {
-        padding: 10px 15px;
-        font-size: 14px;
-        margin-top: 15px;
-    }
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .advanced-link {
+                padding: 10px 15px;
+                font-size: 14px;
+                margin-top: 15px;
+            }
 
-    .link-text {
-        font-size: 14px;
-    }
+            .link-text {
+                font-size: 14px;
+            }
 
-    .link-arrow {
-        font-size: 16px;
-    }
-}
-		
+            .link-arrow {
+                font-size: 16px;
+            }
+        }
+
         /* 全局样式 */
         body {
             font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -242,7 +232,6 @@
             }
         }
 
-
         /* 小屏幕样式 */
         @media (max-width: 768px) {
             .navbar-toggle {
@@ -272,8 +261,8 @@
             padding: 40px 20px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-top: 60px;
             border-radius: 20px;
+            margin-top: 60px;
         }
 
         .header h1 {
@@ -291,6 +280,7 @@
             font-size: 1.2em;
             margin-top: 10px;
         }
+
         /* 内容区域 */
         .content {
             max-width: 800px;
@@ -434,7 +424,7 @@
     <!-- 导航栏 -->
     <nav class="navbar" id="nav">
         <div class="navbar-container">
-            <a href="./navigation.html" class="navbar-logo">➡️导航页面➡️</a>
+            <a href="javascript:history.back(-1)" class="navbar-logo">⬅️️返回主页面⬅️</a>
             <div class="navbar-toggle" id="navbarToggle">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -450,114 +440,58 @@
 
     <!-- 头部 -->
     <div class="header">
-        <h1>CZwiki导航网</h1>
-        <h3>欢迎来到 CZwiki 导航网，这里为您提供便捷的网络入口。</h3>
+        <h1>网页历史样式</h1>
+		<h3><b>😵网站能有现在这个样子，少不了站长的打磨🤯</b></h3>
         <div class="time" id="currentTime"></div>
     </div>
     <!-- 内容 -->
     <div class="content">
-        <p>😆嗨~欢迎来到<b>CZwiki</b>导航网!😀</p>
-        <!-- 获取IP -->
-        <p>📶您的IP地址是: <span id="ip"></span></p>
-        <script>
-            fetch('https://api.ipify.org/?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('ip').textContent = data.ip;
-                })
-                .catch(error => console.error(error));
-        </script>
-		<p>进入<b>CZwiki导航</b>页面❓</p>
-		<p>点击<b>左上方导航页面</b>进入↖️↖️↖️️</p>
-		<p>或点击<b>下方按钮</b>进入↙️↙️↙️</p>
-		<p><b>👇👇👇</b></p>
-		<a href="./navigation.html" class="advanced-link" rel="noopener noreferrer">
-			<div class="link-container">
-				<span class="link-text">🧭进入导航页面🧭</span>
-				<span class="link-arrow">️</span>
-			</div>
-		</a>
-        <p>当然，您可以继续往下翻查看网站提供的<b>其他项目</b>📉📊📈</p>
-        <hr />
-        <div class="module">
-            <p>网站目前已在 <a style="color: #2196f3;" href="https://github.com/" target="_blank">Github</a> 开源，可以进入我的
-                <a href="https://github.com/chzhwe" target="_blank">Github主页</a> 查找源码😎
-            </p>
-            <p>想看又嫌麻烦的可以按键盘上的 [<b>F12</b>] 键简略看一下 <b>源代码</b>😁</p>
-        </div>
-        <div class="module" style="margin-top: 20px;">
-            <p>感兴趣的可以添加我的 <b>STEAM</b>好友：<a target="_blank" rel="noopener noreferrer" href="https://steamcommunity.com/profiles/76561199308126706/">我的STEAM主页</a>️️📰<span class="mp"></span></p>
-			<p>我的<b>STEAM</b>好友代码:<a style="color: #2196f3;"><b>1347860978</b></a>🔖</p>
-            <p>网站从始至终都在坚持更新，<b>想浏览之前的网站长什么样子</b>？🤔</p><b>点击查看: <b>
-			<a href="./HistoryWebpage.html" class="advanced-link" rel="noopener noreferrer">
-				<div class="link-container">
-					<span class="link-text">⏳网站历史样式⌛</span>
-					<span class="link-arrow">️</span>
-				</div>
-			</a></p>
-        </div>
-        <hr />
-        <h1><b>📇其他有趣项目</b>:</h1>
-		<details>
-		    <summary><b>👉点击展开查看项目👈</b></summary>
-		    <ol>
-				<li><a style="margin:20px" href="./other/qqchabang/在线查Q绑.html">Q绑查询系统🗃️</a></li>
-		    </ol>
-			<p>点击即可进入对应<b>项目</b>网页</p>
-		</details>
-        </h3>
-        <hr />
-        <h1><b>💾minecraft服务器</b>:</h1>
-		<p>游戏版本：<b>Java1.20.4💠</b></p>
+		
         <details>
-            <summary><b>👉点击查看服务器地址👈</b></summary>
-            <ol>
-                <li><a target="_blank" style="color: #2196f3;;font-size=20px">frp-off.com:13019</a></li>
-				<button onclick="copyToClip('frp-off.com:13019')">点击复制：frp-off.com:13019</button>
-				<li><a target="_blank" style="color: #2196f3;;font-size=20px">frp-act.com:35595</a></li>
-				<button onclick="copyToClip('frp-act.com:35595')">点击复制：frp-act.com:35595</button>
-				<li><a target="_blank" style="color: #2196f3;;font-size=20px">60.215.128.117:13019</a></li>
-				<button onclick="copyToClip('60.215.128.117:13019')">点击复制：60.215.128.117:13019</button>
-				<li><a target="_blank" style="color: #2196f3;;font-size=20px">122.228.26.226:35595</a></li>
-				<button onclick="copyToClip('122.228.26.226:35595')">点击复制：122.228.26.226:35595</button>
-            </ol>
-			<p>点击地址即可<b>复制</b>到剪贴板📋</p>
+            <summary><b>2.0版本</b></summary>
+			<ol>
+			    <li><a style="margin:20px" href="./2.0/2.1.1/index.html" target="_blank">V2.1.1</a>2025/2/14</li>
+			    <li><a style="margin:20px" href="./2.0/2.1.0/index.html" target="_blank">V2.1.0</a>2025/2/12</li>
+				<li><a style="margin:20px" href="./2.0/2.0.1/index.html" target="_blank">V2.0.1</a>2025/2/11</li>
+			    <li><a style="margin:20px" href="./2.0/2.0.0/index.html" target="_blank">V2.0.0</a>2024/5/14</li>
+			</ol>
         </details>
+
+        <details>
+            <summary><b>1.0版本</b></summary>
+			<ol>
+			    <li><a style="margin:20px" href="./1.0/1.4.1/index.html" target="_blank">V1.4.1</a>2024/2/15</li>
+				<li><a style="margin:20px" href="./1.0/1.4.0/index.html" target="_blank">V1.4.0</a>2023/10/23</li>
+				<li><a style="margin:20px" href="./1.0/1.3.1/index.html" target="_blank">V1.3.1</a>2023/10/22</li>
+				<li><a style="margin:20px" href="./1.0/1.3.0/index.html" target="_blank">V1.3.0</a>2023/10/21</li>
+				<li><a style="margin:20px" href="./1.0/1.2.1/index.html" target="_blank">V1.2.1</a>2023/10/19</li>
+				<li><a style="margin:20px" href="./1.0/1.2.0/index.html" target="_blank">V1.2.0</a>2023/10/17</li>
+				<li><a style="margin:20px" href="./1.0/1.1.1/index.html" target="_blank">V1.1.1</a>2023/10/6</li>
+				<li><a style="margin:20px" href="./1.0/1.1.0/index.html" target="_blank">V1.1.0</a>2023/10/5</li>
+				<li><a style="margin:20px" href="./1.0/1.0.1/index.html" target="_blank">V1.0.1</a>2023/10/1</li>
+				<li><a style="margin:20px" href="./1.0/1.0.0/index.html" target="_blank">V1.0.0</a>2023/9/30</li>
+			</ol>
+        </details>
+		
+		<details>
+		    <summary><b>0.0版本</b></summary>
+			<ol>
+			    <li><a style="margin:20px" href="./0.0/0.2.1/index.html" target="_blank">V0.2.1</a>2023/9/29</li>
+			    <li><a style="margin:20px" href="./0.0/0.2.0/index.html" target="_blank">V0.2.0</a>2023/9/28</li>
+			    <li><a style="margin:20px" href="./0.0/0.1.1/index.html" target="_blank">V0.1.1</a>2023/8/21</li>
+				<li><a style="margin:20px" href="./0.0/0.1.0/index.html" target="_blank">V0.1.0</a>2022/12/13</li>
+				<li><a style="margin:20px" href="./0.0/0.0.1/index.html" target="_blank">V0.0.1</a>2022/9/7</li>
+			</ol>
+		</details>
+					<h3>自站主第一次发布网页至现在已经👇👇<h3>
     </div>
 
     <!-- 底部 -->
     <div class="footer">
         <!-- 访问数量和运行时间 -->
         <div class="stats">
-            <span class="visits" id="visits"></span>
             <span class="runtime" id="runtime"></span>
         </div>
-
-        <!-- 访问数量脚本 -->
-        <script>
-            var caution = false;
-
-            function setCookie(name, value, expires) {
-                var expiresString = expires ? `; expires=${expires.toUTCString()}` : "";
-                document.cookie = `${name}=${encodeURIComponent(value)}; path=/; sameSite=Lax${expiresString}`;
-            }
-
-            function getCookie(name) {
-                const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
-                return match ? decodeURIComponent(match[2]) : null;
-            }
-
-            function updateVisits() {
-                const visits = getCookie("visits");
-                const count = visits ? parseInt(visits) + 1 : 1;
-                const expires = new Date(Date.now() + 365 * 86400000); // 1 year
-                setCookie("visits", count, expires);
-                document.getElementById("visits").textContent = `您近期已访问: ${count}次`;
-            }
-
-            window.addEventListener("load", updateVisits);
-        </script>
-
         <!-- 运行时间脚本 -->
         <script>
             function updateRuntime() {
@@ -570,14 +504,14 @@
                 const minutes = Math.floor((runtime % 3600000) / 60000);
                 const seconds = Math.floor((runtime % 60000) / 1000);
 
-                document.getElementById("runtime").textContent = `网站已运行: ${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
+                document.getElementById("runtime").textContent = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
             }
 
             setInterval(updateRuntime, 1000);
             window.addEventListener("load", updateRuntime);
         </script>
 
-        <p>⚠️未经允许请勿用于商业用途,本项目仅供娱乐❗⚠️</p>
+        <p>⚠️未经允许请勿用于商业用途,本项目仅供娱乐!⚠️</p>
         <h3><b>©️2025 Czwiki 无公安网备案</b>😅</h3>
     </div>
 
@@ -661,21 +595,7 @@
             });
         });
     </script>
-	
-	<!-- 复制点击的文本至剪贴板 -->
-	<script>
-	function copyToClip(content) {
-	var aux = document.createElement("input");
-	aux.setAttribute("value", content);
-	document.body.appendChild(aux);
-	aux.select();
-	document.execCommand("copy");
-	document.body.removeChild(aux);
-	alert("复制成功！️注意：此服务器是Java版我的世界V1.20.4");
 
-	}
-	</script>
-	
     <script>
         document.getElementById('navbarToggle').addEventListener('click', function () {
             const navbarItems = document.getElementById('navbarItems');
@@ -684,91 +604,90 @@
             navbarToggle.classList.toggle('active');
         });
     </script>
-	
-	<!-- 蛛网背景 -->
-	<script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>　
-	<script>
-	!
-	function() {
-	    function n(n, e, t) {
-	        return n.getAttribute(e) || t
-	    }
-	    function e(n) {
-	        return document.getElementsByTagName(n)
-	    }
-	    function t() {
-	        var t = e("script"),
-	        o = t.length,
-	        i = t[o - 1];
-	        return {
-	            l: o,
-	            z: n(i, "zIndex", -1),
-	            o: n(i, "opacity", .5),
-	            c: n(i, "color", "0,0,0"),
-	            n: n(i, "count", 99)
-	        }
-	    }
-	    function o() {
-	        a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-	        c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-	    }
-	    function i() {
-	        r.clearRect(0, 0, a, c);
-	        var n, e, t, o, m, l;
-	        s.forEach(function(i, x) {
-	            for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[e],
-	            null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r.stroke()))
-	        }),
-	        x(i)
-	    }
-	    var a, c, u, m = document.createElement("canvas"),
-	    d = t(),
-	    l = "c_n" + d.l,
-	    r = m.getContext("2d"),
-	    x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-	    function(n) {
-	        window.setTimeout(n, 1e3 / 45)
-	    },
-	    w = Math.random,
-	    y = {
-	        x: null,
-	        y: null,
-	        max: 2e4
-	    };
-	    m.id = l,
-	    m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o,
-	    e("body")[0].appendChild(m),
-	    o(),
-	    window.onresize = o,
-	    window.onmousemove = function(n) {
-	        n = n || window.event,
-	        y.x = n.clientX,
-	        y.y = n.clientY
-	    },
-	    window.onmouseout = function() {
-	        y.x = null,
-	        y.y = null
-	    };
-	    for (var s = [], f = 0; d.n > f; f++) {
-	        var h = w() * a,
-	        g = w() * c,
-	        v = 2 * w() - 1,
-	        p = 2 * w() - 1;
-	        s.push({
-	            x: h,
-	            y: g,
-	            xa: v,
-	            ya: p,
-	            max: 6e3
-	        })
-	    }
-	    u = s.concat([y]),
-	    setTimeout(function() {
-	        i()
-	    },
-	    100)
-	} ();
-	</script>
+
+    <!-- 蛛网背景 -->
+    <script type="text/javascript" src="https://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    <script>
+        !function() {
+        function n(n, e, t) {
+            return n.getAttribute(e) || t
+        }
+        function e(n) {
+            return document.getElementsByTagName(n)
+        }
+        function t() {
+            var t = e("script"),
+            o = t.length,
+            i = t[o - 1];
+            return {
+                l: o,
+                z: n(i, "zIndex", -1),
+                o: n(i, "opacity", .5),
+                c: n(i, "color", "0,0,0"),
+                n: n(i, "count", 99)
+            }
+        }
+        function o() {
+            a = m.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+            c = m.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+        }
+        function i() {
+            r.clearRect(0, 0, a, c);
+            var n, e, t, o, m, l;
+            s.forEach(function(i, x) {
+                for (i.x += i.xa, i.y += i.ya, i.xa *= i.x > a || i.x < 0 ? -1 : 1, i.ya *= i.y > c || i.y < 0 ? -1 : 1, r.fillRect(i.x - .5, i.y - .5, 1, 1), e = x + 1; e < u.length; e++) n = u[e],
+                null !== n.x && null !== n.y && (o = i.x - n.x, m = i.y - n.y, l = o * o + m * m, l < n.max && (n === y && l >= n.max / 2 && (i.x -= .03 * o, i.y -= .03 * m), t = (n.max - l) / n.max, r.beginPath(), r.lineWidth = t / 2, r.strokeStyle = "rgba(" + d.c + "," + (t + .2) + ")", r.moveTo(i.x, i.y), r.lineTo(n.x, n.y), r.stroke()))
+            }),
+            x(i)
+        }
+        var a, c, u, m = document.createElement("canvas"),
+        d = t(),
+        l = "c_n" + d.l,
+        r = m.getContext("2d"),
+        x = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(n) {
+            window.setTimeout(n, 1e3 / 45)
+        },
+        w = Math.random,
+        y = {
+            x: null,
+            y: null,
+            max: 2e4
+        };
+        m.id = l,
+        m.style.cssText = "position:fixed;top:0;left:0;z-index:" + d.z + ";opacity:" + d.o,
+        e("body")[0].appendChild(m),
+        o(),
+        window.onresize = o,
+        window.onmousemove = function(n) {
+            n = n || window.event,
+            y.x = n.clientX,
+            y.y = n.clientY
+        },
+        window.onmouseout = function() {
+            y.x = null,
+            y.y = null
+        };
+        for (var s = [], f = 0; d.n > f; f++) {
+            var h = w() * a,
+            g = w() * c,
+            v = 2 * w() - 1,
+            p = 2 * w() - 1;
+            s.push({
+                x: h,
+                y: g,
+                xa: v,
+                ya: p,
+                max: 6e3
+            })
+        }
+        u = s.concat([y]),
+        setTimeout(function() {
+            i()
+        },
+        100)
+        } ();
+    </script>
 </body>
 
 </html>
