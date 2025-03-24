@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h1>
+  <title>音乐播放器</title>
+  <style>
+    /* 样式设置 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .player {
+      width: 300px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .player img {
+      width: 100%;
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+ {
+ <audio controls>
+  <source src="horse.ogg" >
+  <source src="./我忘了.mp3" >
+您的浏览器不支持 audio 元素。
+</audio>
+}
+
+    .controls button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #45a049;
+    }
+
+    .progress {
+      width: 100%;
+      height: 5px;
+      background-color: #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 50%; /* 示例进度为50%，实际应根据播放进度动态设置 */
+      background-color: #4CAF50;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="player">
+    <img src="img.jpg" alt="Album Cover"> <!-- 替换为实际的专辑封面图片 -->
+    <div class="controls">
+      <button id="playButton">原神</button>
+      <button id="pauseButton">启动</button>
+    </div>
+    <div class="progress">
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+  </h1>
+</body>
+</html>

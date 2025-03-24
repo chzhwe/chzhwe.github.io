@@ -1,0 +1,87 @@
+<！DOCTYPE html >
+< html >
+< >负责人
+<title>; </title>
+< >风格
+/* 样式设置 */
+身体{
+font-family：宋体；
+background - color: # f4f4f4;
+保证金:0;
+填充:0;
+｝
+
+.player {
+宽度:300 px;
+background - color: # fff;
+border - radius: 5 px;
+Box-shadow: 0 2px 5px rgba(0,0,0,0.1)；
+Margin: 50px auto；
+填充:20 px;
+text-align:中心;
+｝
+
+.player img {
+宽度:100%;
+max-width: 200 px;
+margin-bottom: 20 px;
+｝
+
+.合肥{
+显示:flex;
+justify-content:之间的空间;
+对齐项目:中心;
+margin-bottom: 10 px;
+｝
+
+.controls按钮{
+background - color: # 4 caf50;
+边界:没有;
+颜色:白色;
+填充：10px 15px；
+text-align:中心;
+文字修饰:没有;
+显示:inline-block;
+字体大小:16 px;
+border - radius: 5 px;
+光标:指针;
+｝
+
+.controls按钮：hover {
+background - color: # 45 a049;
+｝
+
+编{
+宽度:100%;
+身高:5 px;
+background - color: # ddd;
+border - radius: 5 px;
+margin-bottom: 10 px;
+｝
+
+.progress-bar {
+高度:100%;
+宽度:50%;/* 示例进度为50%，实际应根据播放进度动态设置 */
+background - color: # 4 caf50;
+border - radius: 5 px;
+｝
+> < /风格
+< / >负责人
+身体< >
+< div class = "玩家" >
+<img src=" Album - Cover .jpg" alt="Album Cover"> <！-- 替换为实际的专辑封面图片 -->
+< div class = "控制" >
+<button id="playButton"> </button>
+<button id="pauseButton">
+< / div >
+< div class = "进步" >
+< div class = "进度条" > < / div >
+< / div >
+< / div >
+身体< / >
+< / html >
+<audio controls>
+  <source src="horse.ogg" >
+  <source src="horse.mp3" >
+您的浏览器不支持 audio 元素。
+</audio>
