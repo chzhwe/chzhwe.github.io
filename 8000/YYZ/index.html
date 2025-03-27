@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 杰娜音乐网 🎵</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+	<link rel="manifest" href="./site.webmanifest">
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #A8A4FF;
+            --accent: #FFD700;
+            --gradient: linear-gradient(135deg, #6C5CE7 0%, #A8A4FF 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background: var(--gradient);
+            color: #2d3436;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 1rem 0;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+            color: var(--accent);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .podcast-info {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .album-art {
+            width: 220px;
+            height: 220px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            margin: 1rem auto;
+        }
+
+        .album-art:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .episode-list {
+            display: grid;
+            gap: 2rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .episode {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .episode:hover {
+            transform: translateY(-5px);
+        }
+
+        .episode-title {
+            color: var(--primary);
+            margin: 0 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        audio {
+            width: 100%;
+            height: 40px;
+            margin-top: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(108,92,231,0.2));
+        }
+
+        /* 优化后的底部样式 */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255, 215, 0, 0.1) 0,
+                rgba(255, 215, 0, 0.1) 5px,
+                transparent 5px,
+                transparent 10px
+            );
+            animation: bgMove 20s linear infinite;
+        }
+
+        @keyframes bgMove {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(50%,50%); }
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-footer {
+            background: linear-gradient(135deg, #6C5CE7 0%, #A8A4FF 100%);
+            color: white !important;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-footer:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .episode-list {
+                padding: 1rem;
+            }
+            
+            .album-art {
+                width: 180px;
+                height: 180px;
+            }
+
+            .btn-footer {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-title">
+            <h1 style="color: var(--accent); margin: 0;">🎵 杰娜音乐</h1>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <span style="color: #FF7F50;">▶ 海量Funk音乐</span>
+                <span style="color: #FFB6C1;">✨ 每日更新</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="podcast-info">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    🎧 海量Funk音乐收藏 • 免费畅听 • 持续更新中...
+                </div>
+            </div>
+            <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+            <h2>欢迎来到音乐世界</h2>
+            <p style="max-width: 600px; margin: 1rem auto;">
+                探索最地道的Funk音乐，完全免费收听！如果您喜欢我们的内容，欢迎支持创作者。
+            </p>
+        </div>
+
+        <div class="episode-list">
+            <h2 style="text-align: center; color: var(--primary);">🎶 热门音乐推荐</h2>
+            
+            
+            <div class="episode">
+                <h3 class="episode-title">Funk800 • 黄金律动</h3>
+                <img src="黄豆.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="800.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            
+            
+            <div class="episode">
+                <h3 class="episode-title">Funk801 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="801.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+
+
+            <div class="episode">
+                <h3 class="episode-title">Funk802 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="802.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+                
+                
+            </div>
+              <div class="episode">
+                <h3 class="episode-title">Funk803 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="803.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            
+            
+              <div class="episode">
+                <h3 class="episode-title">Funk804 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="804.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            
+            
+              <div class="episode">
+                <h3 class="episode-title">Funk805• 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="805.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            
+            
+              <div class="episode">
+                <h3 class="episode-title">Funk806 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="806.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            
+            
+              <div class="episode">
+                <h3 class="episode-title">Funk807 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="807.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            
+            
+              <div class="episode">
+                <h3 class="episode-title">Funk808 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="808.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+              <div class="episode">
+                <h3 class="episode-title">Funk809 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="809.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+              <div class="episode">
+                <h3 class="episode-title">Funk810 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="810.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+              <div class="episode">
+                <h3 class="episode-title">Funk811 • 黄金律动</h3>
+                <img src="毒蘑菇.jpg" class="album-art" alt="专辑封面">
+                <p>作者：神秘制作人</p>
+                <audio controls>
+                    <source src="811.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <p style="color: #666; margin-top: 1rem;">🕒 3月27日更新</p>
+            </div>
+            <!-- 其他音乐项 -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-buttons">
+                <a href="./版权隐私说明.html" class="btn-footer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copyright" viewBox="0 0 16 16">
+                        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1m0 13V2a6 6 0 1 1 0 12"/>
+                    </svg>
+                    免责声明
+                </a>
+                <a href="./小香萝入口.html" class="btn-footer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
+                        <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M9.5 3H4V15h5.5zM11 15h2V2.5a.5.5 0 0 0-.5-.5h-1z"/>
+                    </svg>
+                    小香萝入口
+                </a>
+            </div>
+            <div class="copyright">
+                © 2024 杰娜音乐 | 让每个音符触动心灵
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
